@@ -1,4 +1,4 @@
-import { AnyNaptrRecord } from "dns";
+import ProductItemImage from "./productItemImage/ProductItemImg";
 import styles from "./storeProductItem.module.scss";
 import Image from "next/image";
 
@@ -24,18 +24,25 @@ export default async function StoreProductItem() {
   const data = await getData();
 
   const dataMap = data.products.map((el: Products) => {
-    const imagesUrl = el.images.map((img: any) => img);
+    // const imagesUrl = el.images.map((img: any) => img);
     return (
       <div key={el.id}>
+        {/* <div>
+          <Image src={imagesUrl[0]} width={100} height={100} alt="img" />
+        </div> */}
+        <ProductItemImage/>
         <div>title: {el.title}</div>
         <div>price: {el.price}</div>
         <div>rating: {el.rating}</div>
-        <div>
-          <Image src={imagesUrl[0]} width={100} height={100} alt="img" />
-        </div>
       </div>
     );
   });
 
-  return <>{ dataMap }</>;
+  // console.log(data)
+  return (
+    <>
+      
+      {dataMap}
+    </>
+  );
 }
