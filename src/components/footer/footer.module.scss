@@ -1,0 +1,13 @@
+@import '../../scss/variables.scss';
+.footerWrapper {
+    background: $blackTransparent;
+    width: 100%;
+    min-height: 100px;
+    max-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .description {
+        font-size: 14px;
+    }
+}
