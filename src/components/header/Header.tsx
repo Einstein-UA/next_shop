@@ -20,7 +20,7 @@ export default function Header() {
       </div>
       <div className={styles.navbarWrapper}>
         <NavLinkComponent navTo={"/"} title={"HOME"} />
-        <NavLinkComponent navTo={"/store"} title={"STORE"} />
+        <NavLinkComponent navTo={"/products"} title={"STORE"} />
         <NavLinkComponent navTo={"/aboutUs"} title={"ABOUT US"} />
         <NavLinkComponent navTo={"/contactUs"} title={"CONTACT US"} />
         <NavLinkComponent navTo={"/login"} title={"Log In"} />

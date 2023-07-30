@@ -1,0 +1,12 @@
+@import "../../scss/templates.scss";
+
+.storeWrapper {
+  @extend %commonContentComponent;
+  display: flex;
+  flex-direction: column;
+  .titleWrapper {
+    width: 100%;
+    height: min-content;
+    text-align: center;
+  }
+}

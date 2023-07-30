@@ -7,7 +7,6 @@ export default function DropdownItemsPerPage() {
     }
 
   return (
-    <div>
       <select
         className={styles.dropDownCommon}
         name="categories"
@@ -21,6 +20,5 @@ export default function DropdownItemsPerPage() {
         <option value={4}>4</option>
         <option value={5}>5</option>
       </select>
-    </div>
   );
 }
