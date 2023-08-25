@@ -1,3 +1,5 @@
+'use client'
+
 import ContactUsForm from '@/components/contactUsForm/ContactUsForm'
 import styles from './contactUs.module.scss'
 
