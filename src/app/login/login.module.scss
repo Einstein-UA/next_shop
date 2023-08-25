@@ -3,6 +3,13 @@
 .loginWrapper {
   @extend %commonContentComponent;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+  .loginFormWrapper {
+    @extend %commonForm;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+  }
 }

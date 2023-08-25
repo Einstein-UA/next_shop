@@ -8,7 +8,7 @@
   text-align: center;
 }
 
-%commonStoreBtn {
+%commonBtn {
   border: none;
   border-radius: 5px;
   transition: $transition_0_2s;
@@ -41,12 +41,7 @@
     align-items: center;
     padding: 15px;
     border-radius: 10px;
-    .inputLabelWrapper {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-height: 20%;
-    }
+
     .inputStyles {
       width: 100%;
       border-radius: 3px;
@@ -62,7 +57,7 @@
       resize: none;
     }
     button {
-      @extend %commonStoreBtn;
+      @extend %commonBtn;
       width: 140px;
     }
   }
@@ -89,12 +84,12 @@
 }
 
 %commonDropDown {
-    background: $commonGrey;
-    height: 22px;
+  background: $commonGrey;
+  height: 22px;
+  border: none;
+  &:focus {
     border: none;
-    &:focus {
-      border: none;
-      outline: none;
+    outline: none;
   }
 }
 
@@ -104,7 +99,6 @@
     font-size: 18px;
   }
 }
-
 
 @media screen and (max-width: 768px) {
   .formStyles {
