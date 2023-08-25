@@ -17,35 +17,42 @@ export default function ContactUsForm() {
   });
   const [formDataSymbols, setFormDataSymbols] = useState<string[]>([]);
   const [lastSymbol, setLastSymbol] = useState<string[]>([]);
+  const [winHeight, setWinHeight] = useState(0);
+  const [winWidth, setWinWidth] = useState(0);
 
-  const winHeight = window.innerHeight
-  const winWidth = window.innerWidth
+  useEffect(() => {
+    const winHeight = window.innerHeight;
+    const winWidth = window.innerWidth;
+    if(winHeight!== 0 && winWidth !== 0) {
+      setWinHeight(winHeight)
+      setWinWidth(winWidth)
+    } 
+  }, []);
 
-  const getRandomColor = () => {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
+    const getRandomColor = () => {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    };
+
+    const getRandomValue = (min: any, max: any) => {
+      return Math.floor(Math.random() * (max - min)) + min;
+    };
+
+    const getRandomScale = (min: any, max: any) => {
+      return Math.floor(Math.random() * (max - min)) + min;
+    };
+
+    const symbolStyles: any = {
+      position: "absolute",
+      top: `${getRandomValue(200, winHeight - 500)}px`,
+      left: `${getRandomValue(200, winWidth - 500)}px`,
+      color: getRandomColor(),
+    };
   
-  const getRandomValue = (min:any, max:any) => {
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
-
-  const getRandomScale = (min:any, max:any) => {
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
-  
-  const symbolStyles: any = {
-    position: "absolute",
-    top: `${getRandomValue(200, winHeight-500)}px`,
-    left: `${getRandomValue(200, winWidth-500)}px`,
-    color: getRandomColor(),
-    
-    
-  };
 
   useEffect(() => {
     let timer: any;
@@ -82,7 +89,11 @@ export default function ContactUsForm() {
     <div onSubmit={handleSubmit} className={styles.contactUsFormWrapper}>
       {lastSymbol.map((el: any, index: number) => {
         return (
-          <h1 key={index} style={lastSymbol && symbolStyles} className={styles.lastSymbol}>
+          <h1
+            key={index}
+            style={lastSymbol && symbolStyles}
+            className={styles.lastSymbol}
+          >
             {el}
           </h1>
         );

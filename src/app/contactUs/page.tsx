@@ -7,7 +7,7 @@ export default function ContactUs() {
     return(
         <div className={styles.contactUsWrapper}>
             <h1>Contact Us</h1>
-            {/* <ContactUsForm/>    */}
+            <ContactUsForm/>   
         </div>
     )
 }
