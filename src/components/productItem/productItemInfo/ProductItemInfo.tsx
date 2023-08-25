@@ -11,9 +11,10 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   id: string;
+  product: any;
 }
 
-export default function ProductItemInfo({ id }: Props) {
+export default function ProductItemInfo({ id, product }: Props) {
   const [imagesUrl, setImagesUrl] = useState<Array<string>>([]);
   const [imageNumber, setImageNumber] = useState<number>(0);
   const router = useRouter();
@@ -43,14 +44,16 @@ export default function ProductItemInfo({ id }: Props) {
 
   return (
     <div className={styles.productItemInfoWrapper}>
-      <button className={styles.btnBackStyle} onClick={handleBackClick}>BACK</button>
+      <button className={styles.btnBackStyle} onClick={handleBackClick}>
+        BACK
+      </button>
       <div className={styles.productItemInfo}>
         {imageNumber === 0 ? (
           ""
         ) : (
           <button
             onClick={handlePrevClick}
-            className={`${styles.btnStyles} ${styles.prevBtnPosition}`}
+            className={`${styles.nextPrevBtnStyles} ${styles.prevBtnPosition}`}
           >
             <Image src={btnLeft} width={20} height={30} alt="btnLeft" />
           </button>
@@ -60,6 +63,7 @@ export default function ProductItemInfo({ id }: Props) {
             ""
           ) : (
             <Image
+              className={styles.image}
               style={{ borderRadius: "10px" }}
               src={sliceImagesUrl[0]}
               width={300}
@@ -73,11 +77,43 @@ export default function ProductItemInfo({ id }: Props) {
         ) : (
           <button
             onClick={handleNextClick}
-            className={`${styles.btnStyles} ${styles.nextBtnPosition}`}
+            className={`${styles.nextPrevBtnStyles} ${styles.nextBtnPosition}`}
           >
             <Image src={btnRight} width={20} height={30} alt="btnRight" />
           </button>
         )}
+      </div>
+      <div>
+        <p>{product.title}</p>
+        <div className={styles.details}>
+          <p>
+            <b>brand:</b> {product.brand}
+          </p>
+          <p>
+            <b>price:</b> {product.price} $
+          </p>
+          <p>
+            {" "}
+            <b>rating:</b> {product.rating}
+          </p>
+          <p>
+            {" "}
+            <b>stock:</b> {product.stock}
+          </p>
+          <div>
+            <p style={{ whiteSpace: "pre-wrap" }}>
+              <b>description:</b> <br /> ({product.description})
+            </p>
+          </div>
+        </div>
+        <div className={styles.addToCartBuyBtnWrapper}>
+          <button className={styles.btn}>
+            <b>ADD TO CART</b>
+          </button>
+          <button className={styles.btn}>
+            <b>BUY</b>
+          </button>
+        </div>
       </div>
     </div>
   );

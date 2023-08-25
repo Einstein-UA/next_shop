@@ -1,15 +1,20 @@
 "use client";
-import styles from "../header.module.scss";
+import styles from "./searchComponent.module.scss";
 import Image from "next/image";
 import searchBtnWhite from "../../../images/header/searchIcon.png";
 import searchBtnDark from "../../../images/header/searchIconDarck.png";
 import { useContext } from "react";
 import { ThemeContext } from "@/context/themeContext";
 
-export default function SearchComponent() {
+interface Props {
+  setAction?: any;
+}
+
+export default function SearchComponent({ setAction }:Props) {
   const themeContext = useContext(ThemeContext);
   const onSearchBtnHandleClick = (event: React.FormEvent) => {
     event.preventDefault();
+    setAction(false)
   };
 
   return (

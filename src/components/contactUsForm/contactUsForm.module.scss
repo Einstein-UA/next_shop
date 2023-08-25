@@ -1,0 +1,33 @@
+@import "../../scss/templates.scss";
+
+.contactUsFormWrapper {
+  @extend %commonForm;
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  .lastSymbol {
+    color: red;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    animation-name: symbol;
+    animation-duration: .5s;
+    animation-iteration-count: infinite;
+  }
+}
+
+
+@keyframes symbol {
+    0% {
+      transform: scale(30);
+      opacity: 1;
+    }
+    99% {     
+      opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+  }

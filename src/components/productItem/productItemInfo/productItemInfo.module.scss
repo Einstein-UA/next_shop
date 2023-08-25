@@ -8,6 +8,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  .details {
+    width: 300px;
+  }
   .btnBackStyle {
     @extend %commonStoreBtn;
     width: 140px;
@@ -18,7 +21,10 @@
     top: 0;
     left: 0;
     display: flex;
-    .btnStyles {
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    .nextPrevBtnStyles {
       background: black;
       height: 40px;
       width: 40px;
@@ -48,9 +54,87 @@
       padding: 4px 0 0 5px;
     }
     .imagesWrapper {
-      width: 300px;
-      height: 300px;
+      width: 100%;
+      height: 100%;
+      .image {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
+  .addToCartBuyBtnWrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    padding: 20px 0;
+    .btn {
+      width: 140px;
+      @extend %commonStoreBtn;
+    }
+  }
+}
 
+@media screen and (max-width: 425px) {
+  .productItemInfoWrapper {
+    padding: 10px;
+    text-align: center;
+    .details {
+      width: 100%;
+      text-align: center;
+    }
+    .btnBackStyle {
+      margin: 30px;
+      width: 80%;
+    }
+    .productItemInfo {
+      width: 90%;
+      height: 300px;
+      .nextPrevBtnStyles {
+        background: black;
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        transition: $transition_0_2s;
+        &:hover {
+          transition: $transition_0_2s;
+          transform: scale(1) translate(0, -50%);
+        }
+        &:active {
+          transition: $transition_0_2s;
+          transform: scale(0.9) translate(0, -50%);
+        }
+      }
+      .prevBtnPosition {
+        position: absolute;
+        left: 0;
+        top: 45%;
+        padding: 5px 5px 0 0;
+        transform: translate(0, -50%);
+      }
+      .nextBtnPosition {
+        position: absolute;
+        right: 0;
+        top: 45%;
+        transform: translate(0, -50%);
+        padding: 4px 0 0 5px;
+      }
+      .imagesWrapper {
+        width: 90%;
+        height: 90%;
+      }
+    }
+    .addToCartBuyBtnWrapper {
+      width: 100%;
+      padding: 20px;
+      flex-direction: column;
+      align-items: center;
+      .btn {
+        @extend %commonStoreBtn;
+        margin: 10px 0;
+        width: 80%;
+      }
+    }
+  }
 }

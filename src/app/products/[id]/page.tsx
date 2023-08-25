@@ -24,45 +24,14 @@ export default async function ProductInfo({ params: { id } }: Props) {
 
 
   return (
-    <div
-      className={`${styles.ProductInfoWrapper} ${Comfortaa_Light.className}`}
-    >
+    <div className={`${styles.ProductInfoWrapper} ${Comfortaa_Light.className}`}>
+      
       <div>
         <h1>Product details</h1>
-
       </div>
 
-      <ProductItemInfo id={id} />
-      <p>{product.title}</p>
-      <div className={styles.details}>
-        <p>
-          <b>brand:</b> {product.brand}
-        </p>
-        <p>
-          <b>price:</b> {product.price} $
-        </p>
-        <p>
-          {" "}
-          <b>rating:</b> {product.rating}
-        </p>
-        <p>
-          {" "}
-          <b>stock:</b> {product.stock}
-        </p>
-        <div>
-          <p style={{ whiteSpace: "pre-wrap" }}>
-            <b>description:</b> <br /> ({product.description})
-          </p>
-        </div>
-      </div>
-      <div className={styles.btnWrapper}>
-        <button className={styles.btn}>
-          <b>ADD TO CART</b>
-        </button>
-        <button className={styles.btn}>
-          <b>BUY</b>
-        </button>
-      </div>
+      <ProductItemInfo product={product} id={id} />
+
     </div>
   );
 }

@@ -1,10 +1,11 @@
-@import './variables.scss';
+@import "./variables.scss";
 
 %commonContentComponent {
   flex-grow: 1;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+  text-align: center;
 }
 
 %commonStoreBtn {
@@ -21,5 +22,96 @@
   &:active {
     transition: $transition_0_2s;
     transform: scale(1);
+  }
+}
+
+%commonForm {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .formStyles {
+    width: 500px;
+    height: 600px;
+    background: rgba(245, 222, 179, 0.842);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    .inputLabelWrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-height: 20%;
+    }
+    .inputStyles {
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid rgba(255, 255, 255, 0);
+      &:focus {
+        border: 1px solid saddlebrown;
+        background: rgba(180, 180, 161, 0.658);
+        outline: 0;
+      }
+    }
+    .textarea {
+      height: 200px;
+      resize: none;
+    }
+    button {
+      @extend %commonStoreBtn;
+      width: 140px;
+    }
+  }
+}
+
+%commonLink {
+  margin: 0 30px;
+  .navLinkDarkTheme {
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+    &:focus {
+      color: $commonRed;
+    }
+  }
+  .navLinkWhiteTheme {
+    text-decoration: none;
+    color: black;
+    white-space: nowrap;
+    &:focus {
+      color: $commonRed;
+    }
+  }
+}
+
+%commonDropDown {
+    background: $commonGrey;
+    height: 22px;
+    border: none;
+    &:focus {
+      border: none;
+      outline: none;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .nawLinkWrapper {
+    margin: 0 10px;
+    font-size: 18px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .formStyles {
+    margin: 0 15px;
+    max-height: 85%;
+    .textarea {
+      max-height: 100%;
+    }
   }
 }

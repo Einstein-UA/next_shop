@@ -1,0 +1,21 @@
+@import "../../../scss/templates.scss";
+
+.dropDownCommon {
+  @extend %commonDropDown;
+}
+.categories {
+  margin: 0 0 0 33px;
+}
+
+@media screen and (max-width: 1440px) {
+  .categories {
+    margin: 0 0 0 10px;
+    max-width: 150px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .categories {
+    margin: 0;
+  }
+}

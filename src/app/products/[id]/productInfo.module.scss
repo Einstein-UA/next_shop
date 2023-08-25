@@ -5,17 +5,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .details {
-    width: 300px;
-  }
-  .btnWrapper {
-    display: flex;
-    justify-content: space-between;
-    width: 300px;
-    padding: 20px 0;
-    .btn {
-        width: 140px;
-        @extend %commonStoreBtn;
-    }
-  }
 }

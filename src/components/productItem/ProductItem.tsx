@@ -27,6 +27,7 @@ const Comfortaa_Light = localFont({
 });
 
 export default async function ProductItem() {
+  
   const data = await getData();
 
   const productItemWrapperStyles: object = {

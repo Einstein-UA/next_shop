@@ -1,0 +1,6 @@
+@import "../../scss/templates.scss";
+
+.loginFormWrapper {
+    @extend %commonForm; 
+    overflow: hidden;
+}

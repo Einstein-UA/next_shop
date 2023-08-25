@@ -1,5 +1,9 @@
 @import "../../scss/templates.scss";
+@import "../../scss/variables.scss";
 
 .contactUsWrapper {
   @extend %commonContentComponent;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

@@ -1,0 +1,46 @@
+@import "../../../scss//variables.scss";
+
+.formStyles {
+  display: flex;
+  align-items: center;
+  .inputSearchStyles {
+    height: 22px;
+    background: $commonGrey;
+    border: none;
+    &:focus {
+      border: none;
+      outline: 0;
+      outline-offset: 0;
+      color: white;
+    }
+  }
+  .searchBtnStyles {
+    background: none;
+    border: none;
+    transition: 0.2s;
+    padding: 4px 0 0 10px;
+    &:hover {
+      transform: scale(1.2);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .formStyles {
+    max-width: 100%;
+    .inputSearchStyles {
+      max-width: 80%;
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+    .formStyles {
+      max-width: 50%;
+      margin-left: 5%;
+      .inputSearchStyles {
+        max-width: 80%;
+      }
+    }
+  }

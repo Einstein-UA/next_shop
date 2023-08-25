@@ -1,17 +1,23 @@
 "use client";
 
-import styles from "../header.module.scss";
+import styles from "./themeButton.module.scss";
 import Image from "next/image";
 import moon from "../../../images/header/moon.png";
 import sun from "../../../images/header/sun.png";
 import { useContext } from "react";
 import { ThemeContext } from "../../../context/themeContext";
+import { ServerActionDispatcher } from "next/dist/client/components/router-reducer/router-reducer-types";
 
-export default function Button() {
+interface Props {
+  setAction?: any;
+}
+
+export default function Button({ setAction }:Props) {
   const themeContext = useContext(ThemeContext);
 
   const onHandleClick = () => {
     themeContext.setThemeData(!themeContext.themeData);
+    setAction(false)
   };
 
   return (

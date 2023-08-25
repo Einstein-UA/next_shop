@@ -1,5 +1,5 @@
 'use client'
-import styles from '../header.module.scss'
+import styles from './dropDownCategories.module.scss'
 
 export default function DropdownCategories() {
   return (

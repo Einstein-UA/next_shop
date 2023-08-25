@@ -1,5 +1,5 @@
 'use client'
-import styles from '../header.module.scss'
+import styles from './dropDownItemsPerPage.module.scss'
 
 export default function DropdownItemsPerPage() {
     const onHandleChange = () => {
