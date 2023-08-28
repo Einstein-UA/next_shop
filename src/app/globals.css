@@ -7,6 +7,19 @@ body {
   padding: 0;
 }
 
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(128, 128, 128, 0.41);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border: 1px solid #ffffff;
+}
+
 .themeDark {
   display: flex;
   flex-direction: column;
@@ -26,9 +39,9 @@ body {
   height: 100vh;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1024px){
   h1{
-    font-size: 30px;
     margin-bottom: 0;
+    font-size: 30px;
   }
 }

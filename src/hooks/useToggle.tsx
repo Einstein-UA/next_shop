@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
+"use client";
 
-export function useToggle(initialValue: boolean) {
-  const [value, setValue] = useState(initialValue);
+import { useState } from 'react';
 
-  const toggle = () => {
-    setValue(!value);
-  };
-
-  return [value, toggle];
+export function useToggle(initialValue: any) {
+  const [data, setData] = useState(initialValue);
+  return [data, setData] as const;
 }

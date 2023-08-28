@@ -18,7 +18,7 @@ export default function SearchComponent({ setAction }:Props) {
   };
 
   return (
-    <form className={styles.formStyles}>
+    <form className={styles.searchWrapper}>
       <input
         className={styles.inputSearchStyles}
         type="search"

@@ -12,7 +12,7 @@ export const ThemeContext = createContext<ContextType>({
   setThemeData: () => {},
 });
 
-export default function ThemeProvider({ children }: any) {
+export function ThemeProvider({ children }: any) {
   const [themeData, setThemeData] = useState(false);
 
   return (

@@ -6,12 +6,10 @@ import NavLinkComponent from "../navLinkComponent/NavLinkComponent";
 import CartLinkComponent from "../cartLinkComponent/CartLinkComponent";
 import ThemeButton from '../themeButtonComponent/ThemeButton'
 import { ThemeContext } from "../../../context/themeContext";
-import DropdownItemsPerPage from "../dropDownItemsPerPageComponent/DropdownItemsPerPage";
-import DropdownCategories from "../dropDownCategoriesComponent/DropdownCategories";
-import SearchComponent from "../searchComponent/SearchComponent";
+import { useToggle } from '../../../hooks/useToggle'
 
-export default function DropDownBtn() {
-  const [isActive, setActive] = useState(false);
+export default function DropDownMenu() {
+  const [isActive, setActive] = useToggle(false);
   const themeContext = useContext(ThemeContext)
 
   const handleActive = () => {
@@ -34,13 +32,7 @@ export default function DropDownBtn() {
         <NavLinkComponent setAction={setActive} navTo={"/contactUs"} title={"CONTACT US"} />
         <NavLinkComponent setAction={setActive} navTo={"/login"} title={"LOG IN"} />
 
-        <ThemeButton setAction={setActive}/>
-
-        <DropdownItemsPerPage />
-
-        <DropdownCategories />
-
-        <SearchComponent setAction={setActive}/>
+        <ThemeButton />
 
         <CartLinkComponent navTo={"/cart"} />
       </div>

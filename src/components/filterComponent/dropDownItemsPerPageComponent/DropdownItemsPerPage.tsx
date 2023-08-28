@@ -1,13 +1,14 @@
-'use client'
-import styles from './dropDownItemsPerPage.module.scss'
+"use client";
+import styles from "./dropDownItemsPerPage.module.scss";
 
 export default function DropdownItemsPerPage() {
-    const onHandleChange = () => {
-
-    }
+  const onHandleChange = () => {};
 
   return (
+    <div className={styles.productsPerPageWrapper}>
+      <p>Products per page</p>
       <select
+        title="elements per page"
         className={styles.dropDownCommon}
         name="categories"
         id="categories"
@@ -20,5 +21,6 @@ export default function DropdownItemsPerPage() {
         <option value={4}>4</option>
         <option value={5}>5</option>
       </select>
+    </div>
   );
 }

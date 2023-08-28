@@ -1,6 +1,7 @@
 @import '../../../scss/variables.scss';
 
 .themeButtonwrapper {
+  margin-right: 80px;
     .themeButton {
       min-width: 45px;
       max-width: 45px;
@@ -36,5 +37,11 @@
           transition: 0.2s;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .themeButtonwrapper {
+      margin-right: 0;
     }
   }

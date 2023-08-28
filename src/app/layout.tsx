@@ -1,14 +1,14 @@
 import Header from "@/components/header/Header";
 import "./globals.css";
 import Footer from "@/components/footer/Footer";
-import ThemeProvider from "../context/themeContext";
-import localFont from 'next/font/local'
-
+import { ThemeProvider } from "../context/themeContext";
+import { ProductsFilterProvider } from "../context/productsFilterContext";
+import localFont from "next/font/local";
 
 const RussoOne_Regular = localFont({
-  src: '../fonts/RussoOne-Regular.ttf',
-  display: 'swap',
-})
+  src: "../fonts/RussoOne-Regular.ttf",
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -19,9 +19,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={RussoOne_Regular.className}>
         <ThemeProvider>
-          <Header />
-          {children}
-          <Footer />
+          <ProductsFilterProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ProductsFilterProvider>
         </ThemeProvider>
       </body>
     </html>

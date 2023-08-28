@@ -1,24 +1,14 @@
+"use client";
+
 import styles from "./productItem.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
+import { useState, useEffect } from "react";
+import { useProductsFilterContext } from "../../context/productsFilterContext";
 
-async function getData() {
-  const res = await fetch("https://dummyjson.com/products?limit=100");
-
-  if (!res) {
-    throw new Error("Field to fetch data");
-  }
-
-  return res.json();
-}
-
-interface Products {
-  id: number;
-  title: string;
-  price: string;
-  rating: string;
-  images: Array<string>;
+interface Props {
+  data: Array<object>;
 }
 
 const Comfortaa_Light = localFont({
@@ -26,17 +16,27 @@ const Comfortaa_Light = localFont({
   display: "swap",
 });
 
-export default async function ProductItem() {
-  
-  const data = await getData();
+export default function ProductItem({ data }: Props) {
+  const [productsData, setProductsData] = useState<Array<object>>([]);
+  const [filterProductsData, setFilterProductDAta] = useState<Array<object>>([]);
+  const { categories } = useProductsFilterContext();
 
-  const productItemWrapperStyles: object = {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-  };
+  useEffect(() => {
+    if (data) {
+      setProductsData(data);
+    }
+  }, [data]);
 
-  const dataMap = data.products.map((el: Products) => {
+  useEffect(() => {
+    if (productsData && categories !== "all") {
+      const filterData = productsData.filter((el: any) => el.category === categories);
+      setFilterProductDAta(filterData);
+    } else {
+      setFilterProductDAta(data);
+    }
+  }, [categories]);
+
+  const dataMap = filterProductsData.map((el: any) => {
     const imagesUrl = el.images.map((img: any) => img);
     return (
       <div className={styles.productItem} key={el.id}>
@@ -48,16 +48,22 @@ export default async function ProductItem() {
             <p>{el.title}</p>
           </div>
           <div>
-            <p>
-              {el.price} $
-            </p>
+            <p>{el.price} $</p>
           </div>
         </div>
         <Link href={`/products/${el.id}`}>
-          <button className={styles.btnStyle}><b>DETAILS</b></button>
+          <button className={styles.btnStyle}>
+            <b>DETAILS</b>
+          </button>
         </Link>
       </div>
     );
   });
-  return <div style={productItemWrapperStyles} className={Comfortaa_Light.className}>{dataMap}</div>;
+  return (
+    <div
+      className={`${Comfortaa_Light.className} ${styles.productItemWrapperStyles}`}
+    >
+      {dataMap}
+    </div>
+  );
 }

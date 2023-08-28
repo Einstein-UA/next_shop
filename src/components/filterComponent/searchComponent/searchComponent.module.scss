@@ -1,11 +1,12 @@
 @import "../../../scss//variables.scss";
 
-.formStyles {
+.searchWrapper {
   display: flex;
   align-items: center;
   .inputSearchStyles {
     height: 22px;
     background: $commonGrey;
+    width: 130px;
     border: none;
     &:focus {
       border: none;
@@ -27,20 +28,20 @@
   }
 }
 
-@media screen and (max-width: 1440px) {
-  .formStyles {
-    max-width: 100%;
-    .inputSearchStyles {
-      max-width: 80%;
-    }
-  }
-}
-@media screen and (max-width: 1024px) {
-    .formStyles {
-      max-width: 50%;
-      margin-left: 5%;
-      .inputSearchStyles {
-        max-width: 80%;
-      }
-    }
-  }
+// @media screen and (max-width: 1440px) {
+//   .formStyles {
+//     max-width: 100%;
+//     .inputSearchStyles {
+//       max-width: 80%;
+//     }
+//   }
+// }
+// @media screen and (max-width: 1024px) {
+//     .formStyles {
+//       max-width: 50%;
+//       margin-left: 5%;
+//       .inputSearchStyles {
+//         max-width: 80%;
+//       }
+//     }
+//   }

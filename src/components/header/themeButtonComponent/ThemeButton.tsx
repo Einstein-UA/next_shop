@@ -8,16 +8,13 @@ import { useContext } from "react";
 import { ThemeContext } from "../../../context/themeContext";
 import { ServerActionDispatcher } from "next/dist/client/components/router-reducer/router-reducer-types";
 
-interface Props {
-  setAction?: any;
-}
 
-export default function Button({ setAction }:Props) {
+
+export default function Button() {
   const themeContext = useContext(ThemeContext);
 
   const onHandleClick = () => {
     themeContext.setThemeData(!themeContext.themeData);
-    setAction(false)
   };
 
   return (

@@ -5,9 +5,6 @@ import logo2 from "../../images/header/logo2.png";
 import ThemeButton from "./themeButtonComponent/ThemeButton";
 import NavLinkComponent from "./navLinkComponent/NavLinkComponent";
 import CartLinkComponent from "./cartLinkComponent/CartLinkComponent";
-import SearchComponent from "./searchComponent/SearchComponent";
-import DropdownCategories from "./dropDownCategoriesComponent/DropdownCategories";
-import DropdownItemsPerPage from "./dropDownItemsPerPageComponent/DropdownItemsPerPage";
 import DropDownBtn from "./dropDownMenuComponent/DropDownMenu";
 
 export default function Header() {
@@ -31,17 +28,8 @@ export default function Header() {
         <NavLinkComponent navTo={"/login"} title={"LOG IN"} />
       </div>
 
-      <div className={styles.siteConfigWrapper}>
+      <div className={styles.themeButtonCartgWrapper}>
         <ThemeButton />
-
-        <div className={styles.searchDropdownWrapper}>
-          <SearchComponent />
-          <div className={styles.dropDownOptionWrapper}>
-            <DropdownItemsPerPage />
-            <DropdownCategories />
-          </div>
-        </div>
-
         <CartLinkComponent navTo={"/cart"}/>
       </div>
       <DropDownBtn />
