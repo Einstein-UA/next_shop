@@ -1,0 +1,68 @@
+@import "../../scss//variables.scss";
+
+.paginatorWrapper {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  max-width: 250px;
+  margin: 0 auto;
+  .firstLastPage {
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    top: 0;
+    p {
+      margin: 15px 10px 0 10px;
+    }
+  }
+  .goToFirstPage {
+    left: -50px;
+  }
+  .goToLastPage {
+    right: -64px;
+  }
+  .btnStyle {
+    background: none;
+    border: none;
+  }
+  .pageNumWrapper {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition_0_2s;
+    user-select: none;
+    margin: 10px 5px 5px 5px;
+    &:active {
+      transition: $transition_0_2s;
+      transform: scale(0.9);
+    }
+  }
+  .pageNumBorderWhite {
+    border: 1px solid white;
+  }
+  .pageNumBorderBlack {
+    border: 1px solid black;
+  }
+  .arrowBtnWrapper {
+    width: 40px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .arrowBtn {
+      transition: $transition_0_2s;
+      cursor: pointer;
+      &:active {
+        transition: $transition_0_2s;
+        transform: scale(0.9);
+      }
+    }
+  }
+}

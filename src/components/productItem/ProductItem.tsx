@@ -19,7 +19,7 @@ const Comfortaa_Light = localFont({
 export default function ProductItem({ data }: Props) {
   const [productsData, setProductsData] = useState<Array<object>>([]);
   const [filterProductsData, setFilterProductDAta] = useState<Array<object>>([]);
-  const { categories } = useProductsFilterContext();
+  const { categories, currentPage, productsPerPage } = useProductsFilterContext();
 
   useEffect(() => {
     if (data) {
@@ -36,7 +36,12 @@ export default function ProductItem({ data }: Props) {
     }
   }, [categories]);
 
-  const dataMap = filterProductsData.map((el: any) => {
+  const lastPageIndex = currentPage * productsPerPage;
+  const firstPageIndex = lastPageIndex - productsPerPage
+
+  const prodPerPage = filterProductsData.slice(firstPageIndex, lastPageIndex)
+
+  const dataMap = prodPerPage.map((el: any) => {
     const imagesUrl = el.images.map((img: any) => img);
     return (
       <div className={styles.productItem} key={el.id}>

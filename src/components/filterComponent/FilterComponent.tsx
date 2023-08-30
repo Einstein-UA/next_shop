@@ -5,10 +5,16 @@ import DropdownItemsPerPage from "./dropDownItemsPerPageComponent/DropdownItemsP
 import DropdownCategories from "./dropDownCategoriesComponent/DropdownCategories";
 import SearchComponent from "./searchComponent/SearchComponent";
 import { ThemeContext } from "../../context/themeContext";
+import { useProductsFilterContext } from "../../context/productsFilterContext";
 import { useContext } from "react";
-
-export default function FilterComponent() {
+import Paginator from "../paginator/Paginator";
+interface Props {
+  data: [object];
+}
+export default function FilterComponent({ data }: Props) {
   const themeContext = useContext(ThemeContext);
+  const { productsPerPage } = useProductsFilterContext();
+
   return (
     <div
       className={
@@ -18,10 +24,18 @@ export default function FilterComponent() {
       }
     >
       <h1>Store</h1>
-      <div className={styles.filtersWrapper}>
-        <DropdownItemsPerPage />
-        <DropdownCategories />
-        <SearchComponent />
+      <div>
+        <div className={styles.filtersWrapper}>
+          <DropdownItemsPerPage totoalProductsCount={data.length} />
+          <DropdownCategories />
+          <SearchComponent />
+        </div>
+        <div>
+          <Paginator
+            productsPerPage={productsPerPage}
+            totalProductsCount={data.length}
+          />
+        </div>
       </div>
     </div>
   );

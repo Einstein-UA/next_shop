@@ -17,10 +17,9 @@ async function getData() {
 
 export default async function StoreProducts() {
   const data = await getData();
-
   return (
     <div className={styles.storeWrapper}>
-      <FilterComponent/>
+      <FilterComponent data={data.products}/>
       <ProductItem data={data.products} />
     </div>
   );

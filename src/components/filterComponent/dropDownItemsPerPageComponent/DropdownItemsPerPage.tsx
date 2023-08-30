@@ -1,8 +1,18 @@
 "use client";
 import styles from "./dropDownItemsPerPage.module.scss";
+import { useProductsFilterContext } from '../../../context/productsFilterContext'
 
-export default function DropdownItemsPerPage() {
-  const onHandleChange = () => {};
+interface Props {
+  totoalProductsCount: number,
+}
+
+export default function DropdownItemsPerPage({ totoalProductsCount }:Props) {
+  const {productsPerPage, setProductsPerPage, setCurrentPage } = useProductsFilterContext();
+  const onHandleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setProductsPerPage(Number(e.target.value))
+    setCurrentPage(1)
+  };
+
 
   return (
     <div className={styles.productsPerPageWrapper}>
@@ -12,14 +22,12 @@ export default function DropdownItemsPerPage() {
         className={styles.dropDownCommon}
         name="categories"
         id="categories"
-        defaultValue={3}
+        defaultValue={productsPerPage}
         onChange={onHandleChange}
       >
-        <option value={1}>1</option>
-        <option value={2}>2</option>
         <option value={3}>3</option>
-        <option value={4}>4</option>
-        <option value={5}>5</option>
+        <option value={10}>10</option>
+        <option value={totoalProductsCount}>All</option>
       </select>
     </div>
   );

@@ -16,21 +16,26 @@ interface ContextProps {
   setProductsPerPage: Dispatch<SetStateAction<number>>;
   searchData: string;
   setSearchData: Dispatch<SetStateAction<string>>;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
 const ProductsFilterContext = createContext<ContextProps>({
   categories: "all",
   setCategories: () => {},
-  productsPerPage: 5,
+  productsPerPage: 10,
   setProductsPerPage: () => {},
   searchData: "",
   setSearchData: () => {},
+  currentPage: 1,
+  setCurrentPage: () => {},
 });
 
 export const ProductsFilterProvider = ({ children }: any) => {
   const [categories, setCategories] = useState("all");
-  const [productsPerPage, setProductsPerPage] = useState(5);
+  const [productsPerPage, setProductsPerPage] = useState(10);
   const [searchData, setSearchData] = useState("all");
+  const [currentPage, setCurrentPage] =useState(1)
   return (
     <ProductsFilterContext.Provider
       value={{
@@ -40,6 +45,8 @@ export const ProductsFilterProvider = ({ children }: any) => {
         setProductsPerPage,
         searchData,
         setSearchData,
+        currentPage,
+        setCurrentPage,
       }}
     >
         {children}
