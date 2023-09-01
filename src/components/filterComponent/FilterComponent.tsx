@@ -13,7 +13,6 @@ interface Props {
 }
 export default function FilterComponent({ data }: Props) {
   const themeContext = useContext(ThemeContext);
-  const { productsPerPage } = useProductsFilterContext();
 
   return (
     <div
@@ -32,7 +31,6 @@ export default function FilterComponent({ data }: Props) {
         </div>
         <div>
           <Paginator
-            productsPerPage={productsPerPage}
             totalProductsCount={data.length}
           />
         </div>
