@@ -1,21 +1,23 @@
-@import '../../scss/variables.scss';
+@import "../../scss/variables.scss";
 .footerWrapper {
-    background: $blackTransparent;
-    width: 100%;
-    min-height: 100px;
-    max-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .description {
-        font-size: 14px;
-    }
+  background: $blackTransparent;
+  width: 100%;
+  min-height: 100px;
+  max-height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .description {
+    font-size: 14px;
+  }
 }
 
-@media screen and (max-width: 768px){
-    .footerWrapper .description {
-       
-            font-size: 10px;
-    
+@media screen and (max-width: 768px) {
+  .footerWrapper {
+    min-height: 50px;
+    max-height: 50px;
+    .description {
+      font-size: 10px;
     }
   }
+}

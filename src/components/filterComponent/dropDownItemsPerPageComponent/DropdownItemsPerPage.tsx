@@ -7,10 +7,13 @@ interface Props {
 }
 
 export default function DropdownItemsPerPage({ totoalProductsCount }:Props) {
-  const {productsPerPage, setProductsPerPage, setCurrentPage } = useProductsFilterContext();
+
+  const {productsPerPage, setProductsPerPage, setCurrentPage, setPagePartFirstIndex } = useProductsFilterContext();
+
   const onHandleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setProductsPerPage(Number(e.target.value))
     setCurrentPage(1)
+    setPagePartFirstIndex(0)
   };
 
 

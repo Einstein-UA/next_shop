@@ -11,21 +11,25 @@ import leftBlack from "../../images/products/leftBlack.png";
 import rightBlack from "../../images/products/rightBlack.png";
 
 interface Props {
-  productsPerPage: number;
   totalProductsCount: number;
 }
 
-export default function Paginator({
-  productsPerPage,
-  totalProductsCount,
-}: Props) {
-  const themeContext = useContext(ThemeContext);
-  const [pagesCounter, setPagesCounter] = useState<number>(0); // ініціалізуємо загальну кількість сторінок
-  const [pagePartFirstIndex, setPagePartFirstIndex] = useState(0); //індекс першого елемента частини сторінок
+export default function Paginator({ totalProductsCount }: Props) {
+  const [pagesCounter, setPagesCounter] = useState<number>(0);
   const [allPages, setAllPages] = useState<Array<number>>([]);
   const [pagesPart, setPagesPart] = useState<number[]>([]);
 
-  const { currentPage, setCurrentPage } = useProductsFilterContext();
+  const themeContext = useContext(ThemeContext);
+
+  const {
+    currentPage,
+    setCurrentPage,
+    pagePartFirstIndex,
+    setPagePartFirstIndex,
+    filterProductsData,
+    categories,
+    productsPerPage,
+  } = useProductsFilterContext();
 
   useEffect(() => {
     if (
@@ -38,24 +42,32 @@ export default function Paginator({
     }
   }, [currentPage]);
 
-  //--------------------------------------------------------------------------------
-  // встановлюємо кількість сторінок
   useEffect(() => {
     setPagesCounter(Math.ceil(totalProductsCount / productsPerPage));
   }, [productsPerPage, totalProductsCount]);
-  //--------------------------------------------------------------------------------
 
-  //--------------------------------------------------------------------------------
-  // встановлюємо масив з номерами всіх сторінок
   useEffect(() => {
-    setAllPages(pages);
-  }, [pagesCounter]);
-  //--------------------------------------------------------------------------------
-  // порція сторінок
+    if (pagesCounter && categories == "all") {
+      setAllPages(pages);
+    } else {
+      const categoriesPages = [];
+      let categoriesPagesCount;
+      for (let i = 1; i <= filterProductsData.length; i++) {
+        categoriesPagesCount = Math.round(i / productsPerPage);
+      }
+      if (categoriesPagesCount) {
+        for (let i = 1; i <= categoriesPagesCount; i++) {
+          categoriesPages.push(i);
+        }
+      }
+      setAllPages(categoriesPages);
+    }
+  }, [pagesCounter, categories, filterProductsData]);
+
   useEffect(() => {
     setPagesPart(allPagesSlice);
   }, [allPages, pagePartFirstIndex]);
-  //--------------------------------------------------------------------------------
+
   const pages: Array<number> = [];
   for (let i = 1; i < pagesCounter + 1; i++) {
     pages.push(i);
@@ -85,6 +97,7 @@ export default function Paginator({
     setCurrentPage(1);
     const partPages: number[] = allPages.slice(0, 3);
     setPagesPart(partPages);
+    setPagePartFirstIndex(0);
   };
 
   const handleGoToLastPage = () => {
@@ -94,6 +107,7 @@ export default function Paginator({
       allPages.length
     );
     setPagesPart(partPages);
+    setPagePartFirstIndex(allPages.length - 3);
   };
 
   const pagesPartMap = pagesPart.map((el: any, index: number) => {
@@ -117,20 +131,32 @@ export default function Paginator({
     );
   });
 
+
   return (
     <div
       style={pagesCounter == 1 ? { display: "none" } : { display: "flex" }}
       className={styles.paginatorWrapper}
     >
-      <div style={currentPage === 1 ? {display:"none"} : {}} className={`${styles.firstLastPage} ${styles.goToFirstPage}`} onClick={handleGoToFirstPage}>
+      <div
+        onClick={handleGoToFirstPage}
+        style={currentPage === 1 ? { display: "none" } : {}}
+        className={
+          allPages.length > 3
+            ? `${styles.firstLastPage} ${styles.goToFirstPage}`
+            : styles.displayNone
+        }
+      >
         <p>{allPages[0]}</p>
-        <p>. . .</p>
+        <p className={styles.dots}>. . .</p>
       </div>
 
-      <button disabled={currentPage < 1} className={styles.btnStyle}>
+      <button
+        onClick={handlePrevPages}
+        disabled={currentPage < 1}
+        className={allPages.length > 3 ? styles.btnStyle : styles.displayNone}
+      >
         <div className={styles.arrowBtnWrapper}>
           <Image
-            onClick={handlePrevPages}
             className={styles.arrowBtn}
             src={themeContext.themeData ? leftBlack : left}
             alt="prev"
@@ -140,7 +166,10 @@ export default function Paginator({
         </div>
       </button>
       <div style={{ display: "flex" }}> {pagesPartMap} </div>
-      <button onClick={handleNextPages} className={styles.btnStyle}>
+      <button
+        onClick={handleNextPages}
+        className={allPages.length > 3 ? styles.btnStyle : styles.displayNone}
+      >
         <div className={styles.arrowBtnWrapper}>
           <Image
             className={styles.arrowBtn}
@@ -152,8 +181,16 @@ export default function Paginator({
         </div>
       </button>
 
-      <div style={currentPage === allPages.length ? {display:"none"} : {}} onClick={handleGoToLastPage} className={`${styles.firstLastPage} ${styles.goToLastPage}`}>
-        <p>. . .</p>
+      <div
+        onClick={handleGoToLastPage}
+        style={currentPage === allPages.length ? { display: "none" } : {}}
+        className={
+          allPages.length > 3
+            ? `${styles.firstLastPage} ${styles.goToLastPage}`
+            : styles.displayNone
+        }
+      >
+        <p className={styles.dots}>. . .</p>
         <p>{allPages.length}</p>
       </div>
     </div>

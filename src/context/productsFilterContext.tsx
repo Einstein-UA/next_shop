@@ -7,7 +7,6 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import { Value } from "sass";
 
 interface ContextProps {
   categories: string;
@@ -18,6 +17,10 @@ interface ContextProps {
   setSearchData: Dispatch<SetStateAction<string>>;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
+  pagePartFirstIndex: number;
+  setPagePartFirstIndex: Dispatch<SetStateAction<number>>;
+  filterProductsData: object[],
+  setFilterProductDAta: Dispatch<SetStateAction<object[]>>,
 }
 
 const ProductsFilterContext = createContext<ContextProps>({
@@ -29,6 +32,10 @@ const ProductsFilterContext = createContext<ContextProps>({
   setSearchData: () => {},
   currentPage: 1,
   setCurrentPage: () => {},
+  pagePartFirstIndex: 0,
+  setPagePartFirstIndex: () => {},
+  filterProductsData: [],
+  setFilterProductDAta: () => {},
 });
 
 export const ProductsFilterProvider = ({ children }: any) => {
@@ -36,6 +43,8 @@ export const ProductsFilterProvider = ({ children }: any) => {
   const [productsPerPage, setProductsPerPage] = useState(10);
   const [searchData, setSearchData] = useState("all");
   const [currentPage, setCurrentPage] =useState(1)
+  const [pagePartFirstIndex, setPagePartFirstIndex] = useState(0);
+  const [filterProductsData, setFilterProductDAta] = useState<object[]>([]);
   return (
     <ProductsFilterContext.Provider
       value={{
@@ -47,6 +56,10 @@ export const ProductsFilterProvider = ({ children }: any) => {
         setSearchData,
         currentPage,
         setCurrentPage,
+        pagePartFirstIndex,
+        setPagePartFirstIndex,
+        filterProductsData,
+        setFilterProductDAta,
       }}
     >
         {children}

@@ -17,9 +17,10 @@ const Comfortaa_Light = localFont({
 });
 
 export default function ProductItem({ data }: Props) {
+  
   const [productsData, setProductsData] = useState<Array<object>>([]);
-  const [filterProductsData, setFilterProductDAta] = useState<Array<object>>([]);
-  const { categories, currentPage, productsPerPage } = useProductsFilterContext();
+
+  const { categories, currentPage, productsPerPage, filterProductsData, setFilterProductDAta } = useProductsFilterContext();
 
   useEffect(() => {
     if (data) {

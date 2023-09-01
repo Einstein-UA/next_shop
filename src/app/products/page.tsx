@@ -1,8 +1,5 @@
 import styles from "./products.module.scss";
 import ProductItem from "../../components/productItem/ProductItem";
-import SearchComponent from "../../components/filterComponent/searchComponent/SearchComponent";
-import DropdownItemsPerPage from "../../components/filterComponent/dropDownItemsPerPageComponent/DropdownItemsPerPage";
-import DropdownCategories from "../../components/filterComponent/dropDownCategoriesComponent/DropdownCategories";
 import FilterComponent from "@/components/filterComponent/FilterComponent";
 
 async function getData() {

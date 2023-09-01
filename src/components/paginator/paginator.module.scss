@@ -16,6 +16,9 @@
     p {
       margin: 15px 10px 0 10px;
     }
+    .dots {
+      display: block;
+    }
   }
   .goToFirstPage {
     left: -50px;
@@ -63,6 +66,26 @@
         transition: $transition_0_2s;
         transform: scale(0.9);
       }
+    }
+  }
+}
+.displayNone {
+  display: none;
+}
+
+@media screen and (max-width: 375px) {
+  .paginatorWrapper {
+    .firstLastPage .dots {
+      display: none;
+    }
+    .goToFirstPage {
+      left: 10px;
+    }
+    .goToLastPage {
+      right: -2px;
+    }
+    .pageNumWrapper {
+      margin: 10px 0 0 0;
     }
   }
 }

@@ -11,7 +11,13 @@ export default function Header() {
   return (
     <header className={styles.headerWrapper}>
       <div className={styles.logoWrapper}>
-        <Image src={logo1} width={50} height={60} alt="logo1" />
+        <Image
+          className={styles.logo1}
+          src={logo1}
+          width={50}
+          height={60}
+          alt="logo1"
+        />
         <Image
           className={styles.logo2}
           src={logo2}
@@ -30,7 +36,7 @@ export default function Header() {
 
       <div className={styles.themeButtonCartgWrapper}>
         <ThemeButton />
-        <CartLinkComponent navTo={"/cart"}/>
+        <CartLinkComponent navTo={"/cart"} />
       </div>
       <DropDownBtn />
     </header>
