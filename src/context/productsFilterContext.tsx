@@ -20,7 +20,9 @@ interface ContextProps {
   pagePartFirstIndex: number;
   setPagePartFirstIndex: Dispatch<SetStateAction<number>>;
   filterProductsData: object[],
-  setFilterProductDAta: Dispatch<SetStateAction<object[]>>,
+  setFilterProductData: Dispatch<SetStateAction<object[]>>,
+  productsData: object[],
+  setProductsData: Dispatch<SetStateAction<object[]>>,
 }
 
 const ProductsFilterContext = createContext<ContextProps>({
@@ -35,16 +37,19 @@ const ProductsFilterContext = createContext<ContextProps>({
   pagePartFirstIndex: 0,
   setPagePartFirstIndex: () => {},
   filterProductsData: [],
-  setFilterProductDAta: () => {},
+  setFilterProductData: () => {},
+  productsData: [],
+  setProductsData: () => {},
 });
 
 export const ProductsFilterProvider = ({ children }: any) => {
   const [categories, setCategories] = useState("all");
   const [productsPerPage, setProductsPerPage] = useState(10);
-  const [searchData, setSearchData] = useState("all");
+  const [searchData, setSearchData] = useState("");
   const [currentPage, setCurrentPage] =useState(1)
   const [pagePartFirstIndex, setPagePartFirstIndex] = useState(0);
-  const [filterProductsData, setFilterProductDAta] = useState<object[]>([]);
+  const [filterProductsData, setFilterProductData] = useState<object[]>([]);
+  const [productsData, setProductsData] = useState<Array<object>>([]);
   return (
     <ProductsFilterContext.Provider
       value={{
@@ -59,7 +64,9 @@ export const ProductsFilterProvider = ({ children }: any) => {
         pagePartFirstIndex,
         setPagePartFirstIndex,
         filterProductsData,
-        setFilterProductDAta,
+        setFilterProductData,
+        productsData,
+        setProductsData,
       }}
     >
         {children}

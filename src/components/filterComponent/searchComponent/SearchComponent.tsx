@@ -1,21 +1,33 @@
 "use client";
+
 import styles from "./searchComponent.module.scss";
-import Image from "next/image";
-import searchBtnWhite from "../../../images/header/searchIcon.png";
-import searchBtnDark from "../../../images/header/searchIconDarck.png";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from "@/context/themeContext";
+import { useProductsFilterContext } from '../../../context/productsFilterContext'
 
-interface Props {
-  setAction?: any;
-}
-
-export default function SearchComponent({ setAction }:Props) {
+export default function SearchComponent() {
   const themeContext = useContext(ThemeContext);
-  const onSearchBtnHandleClick = (event: React.FormEvent) => {
-    event.preventDefault();
-    setAction(false)
-  };
+  const {searchData, setSearchData, setProductsPerPage, setCategories, setFilterProductData, productsData} = useProductsFilterContext()
+
+  useEffect(() => {
+
+    if (searchData) {
+      setCategories("all");
+      setProductsPerPage(productsData.length)
+      const searchRegExp = new RegExp(searchData, "i"); // "i" - ignore register
+      const searchFilterData = productsData.filter((el: any) =>
+        searchRegExp.test(el.title)
+      );
+      setFilterProductData(searchFilterData);
+    } else {
+      setFilterProductData(productsData);
+    }
+
+  }, [searchData,setCategories, setFilterProductData, productsData]);
+
+  const onHandleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchData(e.target.value)
+  }
 
   return (
     <form className={styles.searchWrapper}>
@@ -23,29 +35,9 @@ export default function SearchComponent({ setAction }:Props) {
         className={styles.inputSearchStyles}
         type="search"
         placeholder="Search"
+        onChange={onHandleChange}
+        value={searchData}
       />
-      <button
-        onClick={onSearchBtnHandleClick}
-        className={styles.searchBtnStyles}
-      >
-        {!themeContext.themeData ? (
-          <Image
-            className={styles.serchIcon}
-            src={searchBtnWhite}
-            width={20}
-            height={20}
-            alt="search button"
-          />
-        ) : (
-          <Image
-            className={styles.serchIcon}
-            src={searchBtnDark}
-            width={20}
-            height={20}
-            alt="search button"
-          />
-        )}
-      </button>
     </form>
   );
 }

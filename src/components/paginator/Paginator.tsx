@@ -27,6 +27,7 @@ export default function Paginator({ totalProductsCount }: Props) {
     pagePartFirstIndex,
     setPagePartFirstIndex,
     filterProductsData,
+    setFilterProductData,
     categories,
     productsPerPage,
   } = useProductsFilterContext();
@@ -62,7 +63,7 @@ export default function Paginator({ totalProductsCount }: Props) {
       }
       setAllPages(categoriesPages);
     }
-  }, [pagesCounter, categories, filterProductsData]);
+  }, [pagesCounter, categories, filterProductsData, setFilterProductData]);
 
   useEffect(() => {
     setPagesPart(allPagesSlice);
@@ -130,7 +131,6 @@ export default function Paginator({ totalProductsCount }: Props) {
       </div>
     );
   });
-
 
   return (
     <div

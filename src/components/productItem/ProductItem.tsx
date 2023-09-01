@@ -4,7 +4,7 @@ import styles from "./productItem.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useProductsFilterContext } from "../../context/productsFilterContext";
 
 interface Props {
@@ -17,10 +17,15 @@ const Comfortaa_Light = localFont({
 });
 
 export default function ProductItem({ data }: Props) {
-  
-  const [productsData, setProductsData] = useState<Array<object>>([]);
+  const {setProductsData, productsData} = useProductsFilterContext()
 
-  const { categories, currentPage, productsPerPage, filterProductsData, setFilterProductDAta } = useProductsFilterContext();
+  const {
+    categories,
+    currentPage,
+    productsPerPage,
+    filterProductsData,
+    setFilterProductData,
+  } = useProductsFilterContext();
 
   useEffect(() => {
     if (data) {
@@ -30,17 +35,19 @@ export default function ProductItem({ data }: Props) {
 
   useEffect(() => {
     if (productsData && categories !== "all") {
-      const filterData = productsData.filter((el: any) => el.category === categories);
-      setFilterProductDAta(filterData);
+      const filterData = productsData.filter(
+        (el: any) => el.category === categories
+      );
+      setFilterProductData(filterData);
     } else {
-      setFilterProductDAta(data);
+      setFilterProductData(data);
     }
   }, [categories]);
 
   const lastPageIndex = currentPage * productsPerPage;
-  const firstPageIndex = lastPageIndex - productsPerPage
+  const firstPageIndex = lastPageIndex - productsPerPage;
 
-  const prodPerPage = filterProductsData.slice(firstPageIndex, lastPageIndex)
+  const prodPerPage = filterProductsData.slice(firstPageIndex, lastPageIndex);
 
   const dataMap = prodPerPage.map((el: any) => {
     const imagesUrl = el.images.map((img: any) => img);
@@ -65,6 +72,7 @@ export default function ProductItem({ data }: Props) {
       </div>
     );
   });
+
   return (
     <div
       className={`${Comfortaa_Light.className} ${styles.productItemWrapperStyles}`}
