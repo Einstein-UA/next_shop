@@ -5,9 +5,11 @@ import Image from "next/image";
 import addedImg from "../../images/products/added.webp";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useProductsFilterContext } from "../../context/productsFilterContext";
 import { useCartContext } from "../../context/cartContext";
+import { ThemeContext } from "@/context/themeContext";
+
 
 interface Props {
   data: Array<object>;
@@ -21,6 +23,7 @@ const Comfortaa_Light = localFont({
 export default function ProductItem({ data }: Props) {
   const { setProductsData, productsData } = useProductsFilterContext();
   const { cartItems } = useCartContext();
+  const themeContext = useContext(ThemeContext)
 
   const {
     categories,
@@ -57,6 +60,7 @@ export default function ProductItem({ data }: Props) {
   const dataMap = prodPerPage.map((el: any) => {
     const imagesUrl = el.images.map((img: any) => img);
     return (
+      <Link style={themeContext.themeData? {textDecoration:"none", color:'black'}:{textDecoration:"none", color:'white'}} href={`/products/${el.id}`}>
       <div className={styles.productItem} key={el.id}>
         {addedId.includes(el.id) ? (
           <Image className={styles.addedImg} src={addedImg} alt="addedImg" />
@@ -74,12 +78,11 @@ export default function ProductItem({ data }: Props) {
             <p>{el.price} $</p>
           </div>
         </div>
-        <Link href={`/products/${el.id}`}>
           <button className={styles.btnStyle}>
             <b>DETAILS</b>
           </button>
-        </Link>
       </div>
+      </Link>
     );
   });
 

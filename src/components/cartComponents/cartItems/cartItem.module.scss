@@ -1,0 +1,41 @@
+@import "../../../scss/variables.scss";
+@import "../../../scss/templates.scss";
+
+.mainWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .totalWrapper {
+    .clearCartBtn {
+        @extend %commonBtn;
+    }
+  }
+  .cartItemWrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+    .cartItem {
+        padding: 15px;
+        background: $blackTransparent;
+        width: min-content;
+        transition: $transition_0_2s;
+        border-radius: 5px;
+        margin: 10px;
+        min-height: 235px;
+        max-height: 235px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        &:hover {
+            background: rgba(145, 145, 145, 0.485);
+            transition: $transition_0_2s;
+        }
+        .deleteItemBtn {
+          @extend %commonBtn;
+        }
+      }
+  }
+
+}
