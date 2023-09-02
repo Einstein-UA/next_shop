@@ -51,7 +51,7 @@ export function ThemeProvider({ children }: any) {
 
   return (
     <ThemeContext.Provider value={{ themeData, setThemeData }}>
-      <div className={themeData !== null ? `theme${themeData ? "White" : "Dark"}` : ''}>{children}</div>
+      <div className={themeData !== null ? `theme${themeData ? "White" : "Dark"}` : 'displayNone'}>{children}</div>
     </ThemeContext.Provider>
   );
 }
