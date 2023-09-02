@@ -37,7 +37,7 @@ export default function CartItem() {
                 alt="itemImg"
               />
               <div>{item.title}</div>
-              <div>{item.price}</div>
+              <div>{item.price}$</div>
               <button onClick={hendlDeleteItem} className={styles.deleteItemBtn}>DELETE</button>
             </div>
           );
