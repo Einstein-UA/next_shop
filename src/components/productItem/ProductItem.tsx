@@ -2,10 +2,12 @@
 
 import styles from "./productItem.module.scss";
 import Image from "next/image";
+import addedImg from "../../images/products/added.webp";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { useEffect } from "react";
 import { useProductsFilterContext } from "../../context/productsFilterContext";
+import { useCartContext } from "../../context/cartContext";
 
 interface Props {
   data: Array<object>;
@@ -17,7 +19,8 @@ const Comfortaa_Light = localFont({
 });
 
 export default function ProductItem({ data }: Props) {
-  const {setProductsData, productsData} = useProductsFilterContext()
+  const { setProductsData, productsData } = useProductsFilterContext();
+  const { cartItems } = useCartContext();
 
   const {
     categories,
@@ -49,10 +52,17 @@ export default function ProductItem({ data }: Props) {
 
   const prodPerPage = filterProductsData.slice(firstPageIndex, lastPageIndex);
 
+  const addedId = cartItems.length > 0 ? cartItems.map((el) => el.id) : [];
+
   const dataMap = prodPerPage.map((el: any) => {
     const imagesUrl = el.images.map((img: any) => img);
     return (
       <div className={styles.productItem} key={el.id}>
+        {addedId.includes(el.id) ? (
+          <Image className={styles.addedImg} src={addedImg} alt="addedImg" />
+        ) : (
+          ""
+        )}
         <div className={styles.imageWrapper}>
           <Image src={imagesUrl[0]} width={100} height={100} alt="img" />
         </div>

@@ -74,4 +74,4 @@ export const ProductsFilterProvider = ({ children }: any) => {
   );
 };
 
-export const useProductsFilterContext = () => useContext(ProductsFilterContext)
+export const useProductsFilterContext = () => useContext(ProductsFilterContext);

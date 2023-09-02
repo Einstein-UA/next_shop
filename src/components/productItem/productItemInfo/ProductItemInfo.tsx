@@ -8,6 +8,7 @@ import useSWR from "swr";
 import btnLeft from "../../../images/products/left.png";
 import btnRight from "../../../images/products/right.png";
 import { useRouter } from "next/navigation";
+import { useCartContext } from '../../../context/cartContext'
 
 interface Props {
   id: string;
@@ -17,6 +18,10 @@ interface Props {
 export default function ProductItemInfo({ id, product }: Props) {
   const [imagesUrl, setImagesUrl] = useState<Array<string>>([]);
   const [imageNumber, setImageNumber] = useState<number>(0);
+
+  
+  const {cartItems,setCartItems, setItemAdded} = useCartContext()
+
   const router = useRouter();
 
   const { data } = useSWR(`https://dummyjson.com/products/${id}`, fetcher);
@@ -26,6 +31,10 @@ export default function ProductItemInfo({ id, product }: Props) {
       setImagesUrl(data.images);
     }
   }, [data]);
+
+  useEffect(() => {
+    setItemAdded(isProductDisabled)
+  },[cartItems])
 
   const sliceImagesUrl = imagesUrl.filter(
     (el: string, index: number) => index === imageNumber
@@ -41,6 +50,12 @@ export default function ProductItemInfo({ id, product }: Props) {
   const handleBackClick = () => {
     router.back();
   };
+  const handleClick = () => {
+    setCartItems(prev => [...prev,product])
+  }
+
+  const addedId = cartItems.length > 0 ? cartItems.map(el => el.id) : [];
+  const isProductDisabled = addedId.includes(product.id);
 
   return (
     <div className={styles.productItemInfoWrapper}>
@@ -106,12 +121,9 @@ export default function ProductItemInfo({ id, product }: Props) {
             </p>
           </div>
         </div>
-        <div className={styles.addToCartBuyBtnWrapper}>
-          <button className={styles.btn}>
-            <b>ADD TO CART</b>
-          </button>
-          <button className={styles.btn}>
-            <b>BUY</b>
+        <div className={styles.cartBtnWrapper}>
+          <button disabled={isProductDisabled} onClick={handleClick} className={styles.btn}>
+            {!isProductDisabled ? <b>ADD TO CART</b> : <b>ADDED</b>}
           </button>
         </div>
       </div>

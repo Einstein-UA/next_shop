@@ -17,9 +17,21 @@
     align-items: center;
     justify-content: space-between;
     transition: $transition_0_2s;
+    position: relative;
+    top: 0;
+    left: 0;
     &:hover {
       background: rgba(128, 128, 128, 0.397);
       transition: $transition_0_2s;
+    }
+    .addedImg {
+      width: 100px;
+      height: auto;
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      z-index: 10;
+      transform: translateX(-50%);
     }
     .imageWrapper {
       width: 150px;

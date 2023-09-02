@@ -62,10 +62,10 @@
       }
     }
   }
-  .addToCartBuyBtnWrapper {
+  .cartBtnWrapper {
     display: flex;
-    justify-content: space-between;
-    width: 300px;
+    justify-content: center;
+    width: 100%;
     padding: 20px 0;
     .btn {
       width: 140px;
@@ -82,10 +82,10 @@
       width: 100%;
       text-align: center;
     }
-    .btnBackStyle {
-      margin: 30px;
-      width: 80%;
-    }
+    // .btnBackStyle {
+    //   margin: 30px;
+    //   width: 80%;
+    // }
     .productItemInfo {
       width: 90%;
       height: 300px;
@@ -125,16 +125,16 @@
         height: 90%;
       }
     }
-    .addToCartBuyBtnWrapper {
-      width: 100%;
-      padding: 20px;
-      flex-direction: column;
-      align-items: center;
-      .btn {
-        @extend %commonBtn;
-        margin: 10px 0;
-        width: 80%;
-      }
-    }
+    // .cartBtnWrapper {
+    //   width: 100%;
+    //   padding: 20px;
+    //   flex-direction: column;
+    //   align-items: center;
+    //   .btn {
+    //     @extend %commonBtn;
+    //     margin: 10px 0;
+    //     width: 80%;
+    //   }
+    // }
   }
 }

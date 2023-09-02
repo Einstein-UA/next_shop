@@ -4,7 +4,7 @@ import logo1 from "../../images/header/logo1.png";
 import logo2 from "../../images/header/logo2.png";
 import ThemeButton from "./themeButtonComponent/ThemeButton";
 import NavLinkComponent from "./navLinkComponent/NavLinkComponent";
-import CartLinkComponent from "./cartLinkComponent/CartLinkComponent";
+import CartLinkComponent from "../cartComponents/cartLinkComponent/CartLinkComponent";
 import DropDownBtn from "./dropDownMenuComponent/DropDownMenu";
 
 export default function Header() {

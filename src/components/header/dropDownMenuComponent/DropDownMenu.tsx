@@ -3,7 +3,7 @@
 import { useState, useContext } from "react";
 import styles from "./dropDownMenu.module.scss";
 import NavLinkComponent from "../navLinkComponent/NavLinkComponent";
-import CartLinkComponent from "../cartLinkComponent/CartLinkComponent";
+import CartLinkComponent from "../../cartComponents/cartLinkComponent/CartLinkComponent";
 import ThemeButton from '../themeButtonComponent/ThemeButton'
 import { ThemeContext } from "../../../context/themeContext";
 import { useToggle } from '../../../hooks/useToggle'
