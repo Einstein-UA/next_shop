@@ -4,12 +4,12 @@ import { useState, useContext } from "react";
 import styles from "./dropDownMenu.module.scss";
 import NavLinkComponent from "../navLinkComponent/NavLinkComponent";
 import CartLinkComponent from "../../cartComponents/cartLinkComponent/CartLinkComponent";
-import ThemeButton from '../themeButtonComponent/ThemeButton'
+import ThemeButton from '../themeButtonComponent/ThemeButton';
 import { ThemeContext } from "../../../context/themeContext";
-import { useToggle } from '../../../hooks/useToggle'
+import { useDropdownProvider } from '../../../context/dropdownContext'
 
 export default function DropDownMenu() {
-  const [isActive, setActive] = useToggle(false);
+  const {isActive, setActive} = useDropdownProvider();
   const themeContext = useContext(ThemeContext)
 
   const handleActive = () => {
@@ -32,7 +32,7 @@ export default function DropDownMenu() {
         <NavLinkComponent setAction={setActive} navTo={"/contactUs"} title={"CONTACT US"} />
         <NavLinkComponent setAction={setActive} navTo={"/login"} title={"LOG IN"} />
 
-        <CartLinkComponent setAction={setActive} navTo={"/cart"} />
+        <CartLinkComponent navTo={"/cart"} />
 
         <ThemeButton />
       </div>

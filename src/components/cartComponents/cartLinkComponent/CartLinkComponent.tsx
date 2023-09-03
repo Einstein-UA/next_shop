@@ -8,19 +8,22 @@ import cartDarkTheme from "../../../images/header/cartDark.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useCartContext } from '../../../context/cartContext'
+import { useDropdownProvider } from '../../../context/dropdownContext' 
 
 interface Props {
   navTo: string,
-  setAction:React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-export default function CartLink({ navTo, setAction }: Props) {
+export default function CartLink({ navTo }: Props) {
 
+  const {setActive} = useDropdownProvider()
   const themeContext = useContext(ThemeContext);
   const {cartItems} = useCartContext();
+
   const handleClick = () => {
-    setAction(false)
+    setActive(false)
   }
+
   return (
     <>
       <Link onClick={handleClick} className={styles.cartLinkWrapper}  href={navTo}>

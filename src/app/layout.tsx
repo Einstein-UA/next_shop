@@ -3,7 +3,8 @@ import "./globals.css";
 import Footer from "@/components/footer/Footer";
 import { ThemeProvider } from "../context/themeContext";
 import { ProductsFilterProvider } from "../context/productsFilterContext";
-import { CartContextProvider } from "../context/cartContext";
+import { CartProvider } from "../context/cartContext";
+import { DropdownProvider } from "../context/dropdownContext";
 import localFont from "next/font/local";
 
 const RussoOne_Regular = localFont({
@@ -21,11 +22,13 @@ export default function RootLayout({
       <body className={RussoOne_Regular.className}>
         <ThemeProvider>
           <ProductsFilterProvider>
-            <CartContextProvider>
-              <Header />
-              {children}
-              <Footer />
-            </CartContextProvider>
+            <CartProvider>
+              <DropdownProvider>
+                <Header />
+                {children}
+                <Footer />
+              </DropdownProvider>
+            </CartProvider>
           </ProductsFilterProvider>
         </ThemeProvider>
       </body>
