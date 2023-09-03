@@ -4,10 +4,10 @@ import SubmitBtnComponent from "@/components/formAllComponents/SubmitBtnComponen
 
 export default function ContactUs() {
   return (
-    <div className={styles.contactUsWrapper}>
+    <div className={styles.mainFormWrapper}>
       <h1>Contact Us</h1>
 
-      <div className={styles.contactUsFormWrapper}>
+      <div className={styles.formWrapper}>
        <form className={styles.formStyles}>
 
             <InputComponent

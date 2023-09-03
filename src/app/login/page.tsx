@@ -4,10 +4,10 @@ import SubmitBtnComponent from "../../components/formAllComponents/SubmitBtnComp
 
 export default function Login() {
   return (
-    <div className={styles.loginWrapper}>
+    <div className={styles.mainFormWrapper}>
       <h1>Log In</h1>
 
-      <div className={styles.loginFormWrapper}>
+      <div className={styles.formWrapper}>
         <form className={styles.formStyles}>
           <InputComponent
             inputStyle={styles.inputStyles}

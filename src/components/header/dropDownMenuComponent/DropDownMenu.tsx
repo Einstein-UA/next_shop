@@ -32,9 +32,9 @@ export default function DropDownMenu() {
         <NavLinkComponent setAction={setActive} navTo={"/contactUs"} title={"CONTACT US"} />
         <NavLinkComponent setAction={setActive} navTo={"/login"} title={"LOG IN"} />
 
-        <ThemeButton />
+        <CartLinkComponent setAction={setActive} navTo={"/cart"} />
 
-        <CartLinkComponent navTo={"/cart"} />
+        <ThemeButton />
       </div>
       <button onClick={handleActive} className={styles.dropDownBtn}>
         <div

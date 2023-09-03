@@ -10,16 +10,20 @@ import Link from "next/link";
 import { useCartContext } from '../../../context/cartContext'
 
 interface Props {
-  navTo: string;
+  navTo: string,
+  setAction:React.Dispatch<React.SetStateAction<boolean>>,
 }
 
-export default function CartLink({ navTo }: Props) {
+export default function CartLink({ navTo, setAction }: Props) {
 
   const themeContext = useContext(ThemeContext);
   const {cartItems} = useCartContext();
+  const handleClick = () => {
+    setAction(false)
+  }
   return (
     <>
-      <Link className={styles.cartLinkWrapper}  href={navTo}>
+      <Link onClick={handleClick} className={styles.cartLinkWrapper}  href={navTo}>
         {cartItems.length > 0 ? <div className={styles.cartItemsCounter}><p>{cartItems.length}</p></div> : ""}
         {themeContext.themeData ? (
           <Image src={cartDarkTheme} width={50} height={40} alt="Cart" />
