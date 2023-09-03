@@ -1,66 +1,44 @@
 "use client";
 
-import { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 interface ContextType {
-  themeData: boolean;
-  setThemeData: React.Dispatch<React.SetStateAction<boolean>>;
+  themeData: boolean | null;
+  setThemeData: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 export const ThemeContext = createContext<ContextType>({
-  themeData: false,
+  themeData: null,
   setThemeData: () => {},
 });
 
 export function ThemeProvider({ children }: any) {
-  const [themeData, setThemeData] = useState(false);
+  const [themeData, setThemeData] = useState<boolean | null>(() => {
+    const storedData: any = window.localStorage.getItem("THEME_MODE");
+    return storedData !== null ? JSON.parse(storedData) : false;
+  });
+
+  useEffect(() => {
+    if (themeData === null) {
+      window.localStorage.setItem("THEME_MODE", JSON.stringify(false));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (themeData !== null) {
+      window.localStorage.setItem("THEME_MODE", JSON.stringify(themeData));
+    }
+  }, [themeData]);
+
+  if (themeData === null) {
+    return null;
+  }
 
   return (
     <ThemeContext.Provider value={{ themeData, setThemeData }}>
-      <div className={`theme${themeData ? "White" : "Dark"}`}>{children}</div>
+      <div className={`theme${themeData ? "White" : "Dark"}`}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   );
 }
-
-// "use client";
-
-// import { createContext, useState, useEffect } from "react";
-
-// interface ContextType {
-//   themeData: boolean | null;
-//   setThemeData: React.Dispatch<React.SetStateAction<boolean | null>>;
-// }
-
-// export const ThemeContext = createContext<ContextType>({
-//   themeData: null,
-//   setThemeData: () => {},
-// });
-
-// export function ThemeProvider({ children }: any) {
-//   const [themeData, setThemeData] = useState<boolean | null>(null);
-
-//   useEffect(() => {
-//     const data = window.localStorage.getItem("THEME_MODE");
-//     if (data) {
-//       setThemeData(JSON.parse(data));
-//     }
-//   }, []);
-
-//   useEffect(() => {
-//     window.localStorage.setItem("THEME_MODE", JSON.stringify(themeData));
-//   }, [themeData]);
-//   console.log(themeData);
-//   return (
-//     <ThemeContext.Provider value={{ themeData, setThemeData }}>
-//       <div
-//         className={
-//           themeData !== null
-//             ? `theme${themeData ? "White" : "Dark"}`
-//             : "displayNone"
-//         }
-//       >
-//         {children}
-//       </div>
-//     </ThemeContext.Provider>
-//   );
-// }
