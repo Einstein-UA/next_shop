@@ -61,3 +61,23 @@
         display: none;
   }
 }
+
+@media screen and (max-height: 650px) {
+  .headerWrapper {
+    min-height: 50px;
+    max-height: 50px;
+    .logoWrapper {
+      display: flex;
+      align-items: center;
+      .logo1 {
+        height: 40px;
+        width: auto;
+      }
+      .logo2 {
+        margin:  20px 0 0 1px;
+        height: 20px;
+        width: auto;
+      }
+    }
+  }
+}
