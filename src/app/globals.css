@@ -38,15 +38,6 @@ body {
   width: 100vw;
   height: 100vh;
 }
-.displayNone {
-    display: none;
-    /* flex-direction: column;
-    background: none;
-    color: white;
-    transition: 0.2s;
-    width: 100vw;
-    height: 100vh; */
-}
 
 @media screen and (max-width: 1024px){
   h1{
