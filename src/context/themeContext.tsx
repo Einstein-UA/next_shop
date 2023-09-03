@@ -13,15 +13,12 @@ export const ThemeContext = createContext<ContextType>({
 });
 
 export function ThemeProvider({ children }: any) {
-  const [themeData, setThemeData] = useState<boolean | null>(() => {
-    const storedData: any = window.localStorage.getItem("THEME_MODE");
-    return storedData !== null ? JSON.parse(storedData) : false;
-  });
+
+  const [themeData, setThemeData] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (themeData === null) {
-      window.localStorage.setItem("THEME_MODE", JSON.stringify(false));
-    }
+    const storedData: any = window.localStorage.getItem("THEME_MODE");
+    setThemeData(storedData !== null ? JSON.parse(storedData) : false);
   }, []);
 
   useEffect(() => {
@@ -31,7 +28,7 @@ export function ThemeProvider({ children }: any) {
   }, [themeData]);
 
   if (themeData === null) {
-    return null;
+    return null; 
   }
 
   return (
