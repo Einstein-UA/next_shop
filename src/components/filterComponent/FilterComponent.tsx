@@ -7,7 +7,6 @@ import SearchComponent from "./searchComponent/SearchComponent";
 import { ThemeContext } from "../../context/themeContext";
 import { useContext } from "react";
 import Paginator from "../paginator/Paginator";
-import RocetComponent from "../rocetComponent/RocetComponent";
 
 interface Props {
   data: [object];
