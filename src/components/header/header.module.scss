@@ -10,12 +10,7 @@
   max-height: 100px;
   background: $blackTransparent;
   padding: 0 30px;
-  .logoWrapper {
-    display: flex;
-    .logo2 {
-      margin: 30px 0 0 1px;
-    }
-  }
+
   .navbarWrapper {
     display: flex;
   }
@@ -40,25 +35,7 @@
   .headerWrapper {
     min-height: 50px;
     max-height: 50px;
-    .logoWrapper {
-      display: flex;
-      align-items: center;
-      .logo1 {
-        height: 40px;
-        width: auto;
-      }
-      .logo2 {
-        margin:  20px 0 0 1px;
-        height: 20px;
-        width: auto;
-      }
-    }
-  }
-}
 
-@media screen and (max-width: 260px) {
-  .headerWrapper .logoWrapper .logo2 {
-        display: none;
   }
 }
 
@@ -66,18 +43,5 @@
   .headerWrapper {
     min-height: 50px;
     max-height: 50px;
-    .logoWrapper {
-      display: flex;
-      align-items: center;
-      .logo1 {
-        height: 40px;
-        width: auto;
-      }
-      .logo2 {
-        margin:  20px 0 0 1px;
-        height: 20px;
-        width: auto;
-      }
-    }
   }
 }

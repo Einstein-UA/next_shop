@@ -11,24 +11,6 @@
     font-size: 14px;
   }
 }
-// @media screen and (max-height: 650px) {
-//   .footerWrapper {
-//     min-height: 50px;
-//     max-height: 50px;
-//     .description {
-//       font-size: 10px;
-//     }
-//   }
-// }
-// @media screen and (max-width: 768px) {
-//   .footerWrapper {
-//     min-height: 50px;
-//     max-height: 50px;
-//     .description {
-//       font-size: 10px;
-//     }
-//   }
-// }
 
 @media screen and (max-height: 650px), screen and (max-width: 768px) {
   .footerWrapper {
@@ -39,5 +21,3 @@
     }
   }
 }
-
-

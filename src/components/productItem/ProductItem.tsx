@@ -60,8 +60,8 @@ export default function ProductItem({ data }: Props) {
   const dataMap = prodPerPage.map((el: any) => {
     const imagesUrl = el.images.map((img: any) => img);
     return (
-      <Link style={themeContext.themeData? {textDecoration:"none", color:'black'}:{textDecoration:"none", color:'white'}} href={`/products/${el.id}`}>
-      <div className={styles.productItem} key={el.id}>
+      <Link key={el.id} style={themeContext.themeData? {textDecoration:"none", color:'black'}:{textDecoration:"none", color:'white'}} href={`/${el.id}`}>
+      <div className={styles.productItem} >
         {addedId.includes(el.id) ? (
           <Image className={styles.addedImg} src={addedImg} alt="addedImg" />
         ) : (

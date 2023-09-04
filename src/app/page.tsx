@@ -1,10 +1,25 @@
-import Image from "next/image";
-import styles from "./home.module.scss";
+import styles from "./store.module.scss";
+import ProductItem from "../components/productItem/ProductItem";
+import FilterComponent from "@/components/filterComponent/FilterComponent";
+import RocetComponent from "@/components/rocetComponent/RocetComponent";
 
-export default function Home() {
+async function getData() {
+  const res = await fetch("https://dummyjson.com/products?limit=100");
+
+  if (!res) {
+    throw new Error("Field to fetch data");
+  }
+
+  return res.json();
+}
+
+export default async function StoreProducts() {
+  const data = await getData();
   return (
-    <main className={styles.homeWrapper}>
-      <h1>Main</h1>
-    </main>
+    <div className={styles.storeWrapper}>
+      <FilterComponent data={data.products} />
+      <ProductItem data={data.products} />
+    </div>
   );
 }
+

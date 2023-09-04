@@ -5,12 +5,14 @@ import DropdownItemsPerPage from "./dropDownItemsPerPageComponent/DropdownItemsP
 import DropdownCategories from "./dropDownCategoriesComponent/DropdownCategories";
 import SearchComponent from "./searchComponent/SearchComponent";
 import { ThemeContext } from "../../context/themeContext";
-import { useProductsFilterContext } from "../../context/productsFilterContext";
 import { useContext } from "react";
 import Paginator from "../paginator/Paginator";
+import RocetComponent from "../rocetComponent/RocetComponent";
+
 interface Props {
   data: [object];
 }
+
 export default function FilterComponent({ data }: Props) {
   const themeContext = useContext(ThemeContext);
 
@@ -22,6 +24,7 @@ export default function FilterComponent({ data }: Props) {
           : `${styles.titleWrapperWhiteTheme} ${styles.titleWrapperDarkTheme}`
       }
     >
+
       <h1>Store</h1>
       <div>
         <div className={styles.filtersWrapper}>

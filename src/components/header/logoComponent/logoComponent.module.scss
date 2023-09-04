@@ -1,0 +1,125 @@
+.logoBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  .logoWrapper {
+    display: flex;
+    .logo1 {
+
+    }
+    .logo2 {
+      margin: 30px 0 0 1px;
+    }
+    .logo1Hover {
+      animation: logo1HoverAnimation 0.5s ease-in-out 1;
+    }
+    .logo2Hover {
+      animation: logo2HoverAnimation 0.5s ease-in-out 1;
+    }
+    .logo1FirstRender {
+      animation-name: logo1FirstRender;
+      animation-duration: 0.5s;
+      animation-delay: 1.1s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      transform: scale(0);
+    }
+
+    .logo2FirstRender {
+      animation-name: logo2FirstRender;
+      animation-duration: 1s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+  }
+  .navbarWrapper {
+    display: flex;
+  }
+  .themeButtonCartgWrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+}
+
+@keyframes logo1FirstRender {
+  0% {
+    transform: translateX(-100px);
+  }
+  30% {
+    transform: rotate(0deg) translateX(0);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+@keyframes logo2FirstRender {
+  0% {
+    transform: scale(0) translateY(-100px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes logo1HoverAnimation {
+  0% {
+    transform: scale(1) translateX(0);
+  }
+  50% {
+    transform: scale(1.2) translateX(-20px);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+  }
+}
+
+@keyframes logo2HoverAnimation {
+  0% {
+    transform: scale(1) translateX(0);
+  }
+  50% {
+    transform: scale(1.2) translateX(20px);
+  }
+  100% {
+    transform: scale(1) translateX(0);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logoBtn .logoWrapper {
+    display: flex;
+    align-items: center;
+    .logo1 {
+      height: 40px;
+      width: auto;
+    }
+    .logo2 {
+      margin: 20px 0 0 1px;
+      height: 20px;
+      width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 260px) {
+  .logoBtn .logoWrapper .logo2 {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .logoBtn .logoWrapper {
+    display: flex;
+    align-items: center;
+    .logo1 {
+      height: 40px;
+      width: auto;
+    }
+    .logo2 {
+      margin: 20px 0 0 1px;
+      height: 20px;
+      width: auto;
+    }
+  }
+}

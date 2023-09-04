@@ -1,5 +1,5 @@
 import styles from "./productInfo.module.scss";
-import ProductItemInfo from "../../../components/productItem/productItemInfo/ProductItemInfo";
+import ProductItemInfo from "../../components/productItem/productItemInfo/ProductItemInfo";
 import localFont from "next/font/local";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Comfortaa_Light = localFont({
-  src: "../../../fonts/Comfortaa-Light.ttf",
+  src: "../../fonts/Comfortaa-Light.ttf",
   display: "swap",
 });
 

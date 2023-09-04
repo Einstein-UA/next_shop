@@ -6,6 +6,7 @@ import { ProductsFilterProvider } from "../context/productsFilterContext";
 import { CartProvider } from "../context/cartContext";
 import { DropdownProvider } from "../context/dropdownContext";
 import localFont from "next/font/local";
+import { LogoProvider } from "@/context/logoContext";
 
 const RussoOne_Regular = localFont({
   src: "../fonts/RussoOne-Regular.ttf",
@@ -24,9 +25,11 @@ export default function RootLayout({
           <ProductsFilterProvider>
             <CartProvider>
               <DropdownProvider>
+                <LogoProvider>
                 <Header />
                 {children}
                 <Footer />
+                </LogoProvider>
               </DropdownProvider>
             </CartProvider>
           </ProductsFilterProvider>
