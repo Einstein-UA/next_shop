@@ -26,8 +26,7 @@ export default function DropDownMenu() {
             : `${styles.dropDownMenu} ${styles.dropDownMenuActive}`
         }
       >
-        <NavLinkComponent setAction={setActive} navTo={"/"} title={"HOME"} />
-        <NavLinkComponent setAction={setActive} navTo={"/products"} title={"STORE"} />
+        <NavLinkComponent setAction={setActive} navTo={"/"} title={"STORE"} />
         <NavLinkComponent setAction={setActive} navTo={"/aboutUs"} title={"ABOUT US"} />
         <NavLinkComponent setAction={setActive} navTo={"/contactUs"} title={"CONTACT US"} />
         <NavLinkComponent setAction={setActive} navTo={"/login"} title={"LOG IN"} />
