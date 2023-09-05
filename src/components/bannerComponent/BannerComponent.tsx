@@ -1,26 +1,26 @@
 "use client";
 
-import styles from "./rocetComponent.module.scss";
+import styles from "./bannerComponent.module.scss";
 import Image from "next/image";
-import rocket from "../../images/home/rocket.webp";
-import sale from "../../images/home/sale.gif";
-import { useLogoContext } from "../../context/logoContext";
+import rocket from "../../images/store/rocket.webp";
+import sale from "../../images/store/sale.gif";
+import { useLogoContext } from "@/context/logoContext";
 
 interface Props {
   position?: string;
 }
 
-export default function RocetComponent({ position }: Props) {
-  const { isBanerActive } = useLogoContext();
-
+export default function BannerComponent({ position }: Props) {
+  const { isBannerActive } = useLogoContext();
+console.log(isBannerActive)
   return (
     <div
       className={
         position === "top"
-          ? !isBanerActive
+          ? !isBannerActive
             ? styles.rocketSaleWrapperTop
             : `${styles.rocketSaleWrapperTop} ${styles.rocketSaleWrapperTopActive}`
-          : !isBanerActive
+          : !isBannerActive
           ? styles.rocketSaleWrapperBottom
           : `${styles.rocketSaleWrapperBottom} ${styles.rocketSaleWrapperBottomActive}`
       }

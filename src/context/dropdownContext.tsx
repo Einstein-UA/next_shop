@@ -7,7 +7,7 @@ interface ContextProps {
   isActive: boolean;
   setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const DropdowConext = createContext<ContextProps>({
+const DropdownConext = createContext<ContextProps>({
   isActive: false,
   setActive: () => {},
 });
@@ -16,10 +16,10 @@ export const DropdownProvider = ({ children }: any) => {
   const [isActive, setActive] = useToggle(false);
 
   return (
-    <DropdowConext.Provider value={{ isActive, setActive }}>
+    <DropdownConext.Provider value={{ isActive, setActive }}>
       {children}
-    </DropdowConext.Provider>
+    </DropdownConext.Provider>
   );
 };
 
-export const useDropdownProvider = () => useContext(DropdowConext);
+export const useDropdownProvider = () => useContext(DropdownConext);

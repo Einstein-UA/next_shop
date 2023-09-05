@@ -4,12 +4,12 @@ import NavLinkComponent from "./navLinkComponent/NavLinkComponent";
 import CartLinkComponent from "../cartComponents/cartLinkComponent/CartLinkComponent";
 import DropDownBtn from "./dropDownMenuComponent/DropDownMenu";
 import LogoComponent from "./logoComponent/LogoComponent";
-import RocetComponent from "../rocetComponent/RocetComponent";
+import BannerComponent from "../bannerComponent/BannerComponent";
 
 export default function Header() {
   return (
     <header className={styles.headerWrapper}>
-      <RocetComponent position="top" />
+      <BannerComponent position="top" />
 
       <LogoComponent />
 

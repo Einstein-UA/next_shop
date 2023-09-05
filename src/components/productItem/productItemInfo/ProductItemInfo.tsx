@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import styles from "./productItemInfo.module.scss";
 import Image from "next/image";
-import { fetcher } from "../../../swrFetcher/swrFetcher";
+import { fetcher } from "@/swrFetcher/swrFetcher";
 import useSWR from "swr";
-import btnLeft from "../../../images/products/left.png";
-import btnRight from "../../../images/products/right.png";
+import btnLeft from "../../../images/store/left.png";
+import btnRight from "../../../images/store/right.png";
 import { useRouter } from "next/navigation";
-import { useCartContext } from '../../../context/cartContext'
+import { useCartContext } from '@/context/cartContext'
 
 interface Props {
   id: string;

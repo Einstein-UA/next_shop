@@ -1,7 +1,6 @@
 import styles from "./store.module.scss";
 import ProductItem from "../components/productItem/ProductItem";
 import FilterComponent from "@/components/filterComponent/FilterComponent";
-import RocetComponent from "@/components/rocetComponent/RocetComponent";
 
 async function getData() {
   const res = await fetch("https://dummyjson.com/products?limit=100");

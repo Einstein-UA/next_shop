@@ -4,13 +4,13 @@ import styles from "./logoComponent.module.scss";
 import Image from "next/image";
 import logo1 from "../../../images/header/logo1.png";
 import logo2 from "../../../images/header/logo2.png";
-import { useLogoContext } from "../../../context/logoContext";
-import { useState, useEffect } from "react";
+import { useLogoContext } from "@/context/logoContext";
+import { useEffect } from "react";
 import Link from "next/link";
-import { useToggle } from "../../../hooks/useToggle";
+import { useToggle } from "@/hooks/useToggle";
 
 export default function LogoComponent() {
-  const { isBanerActive, setBanerActive } = useLogoContext();
+  const { isBannerActive, setBannerActive } = useLogoContext();
   const [firstRender, setFirstRender] = useToggle(false);
   const [isHover, setHover] = useToggle(false);
 
@@ -23,9 +23,9 @@ export default function LogoComponent() {
   }, []);
 
   const handleClick = () => {
-    setBanerActive(true);
+    setBannerActive(true);
     const timeout = setTimeout(() => {
-      setBanerActive(false);
+      setBannerActive(false);
     }, 3000);
 
     return () => clearTimeout(timeout);
@@ -47,7 +47,7 @@ export default function LogoComponent() {
         onMouseEnter={onMouseEvent}
         onMouseLeave={onMouseEvent}
         className={styles.logoBtn}
-        disabled={isBanerActive}
+        disabled={isBannerActive}
       >
         <div onClick={handleClick} className={styles.logoWrapper}>
           <Image
@@ -80,4 +80,4 @@ export default function LogoComponent() {
       </button>
     </Link>
   );
-}
+};

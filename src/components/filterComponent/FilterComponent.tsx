@@ -4,7 +4,7 @@ import styles from "./filterComponent.module.scss";
 import DropdownItemsPerPage from "./dropDownItemsPerPageComponent/DropdownItemsPerPage";
 import DropdownCategories from "./dropDownCategoriesComponent/DropdownCategories";
 import SearchComponent from "./searchComponent/SearchComponent";
-import { ThemeContext } from "../../context/themeContext";
+import { ThemeContext } from "@/context/themeContext";
 import { useContext } from "react";
 import Paginator from "../paginator/Paginator";
 

@@ -1,25 +1,25 @@
 'use client'
 
 import { createContext, useContext } from "react";
-import { useToggle } from "../hooks/useToggle";
+import { useToggle } from "@/hooks/useToggle";
 
 interface ContextProps {
-  isBanerActive: boolean;
-  setBanerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  isBannerActive: boolean;
+  setBannerActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const LogoConext = createContext<ContextProps>({
-  isBanerActive: false,
-  setBanerActive: () => {},
+const LogoContext = createContext<ContextProps>({
+  isBannerActive: false,
+  setBannerActive: () => {},
 });
 
 export const LogoProvider = ({ children }: any) => {
-  const [isBanerActive, setBanerActive] = useToggle(false);
+  const [isBannerActive, setBannerActive] = useToggle(false);
 
   return (
-    <LogoConext.Provider value={{ isBanerActive, setBanerActive }}>
+    <LogoContext.Provider value={{ isBannerActive, setBannerActive }}>
       {children}
-    </LogoConext.Provider>
+    </LogoContext.Provider>
   );
 };
 
-export const useLogoContext = () => useContext(LogoConext);
+export const useLogoContext = () => useContext(LogoContext);

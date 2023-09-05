@@ -2,4 +2,5 @@
 
 .cartWrapper {
   @extend %commonContentComponent;
+  background: url("../../../src/images/cart/Animated_Shape.svg") 50%/cover no-repeat;
 }

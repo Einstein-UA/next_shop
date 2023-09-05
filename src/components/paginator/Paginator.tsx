@@ -5,10 +5,10 @@ import styles from "./paginator.module.scss";
 import { ThemeContext } from "../../context/themeContext";
 import { useProductsFilterContext } from "../../context/productsFilterContext";
 import Image from "next/image";
-import left from "../../images/products/left.png";
-import right from "../../images/products/right.png";
-import leftBlack from "../../images/products/leftBlack.png";
-import rightBlack from "../../images/products/rightBlack.png";
+import left from "../../images/store/left.png";
+import right from "../../images/store/right.png";
+import leftBlack from "../../images/store/leftBlack.png";
+import rightBlack from "../../images/store/rightBlack.png";
 
 interface Props {
   totalProductsCount: number;

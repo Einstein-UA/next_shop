@@ -6,6 +6,7 @@
   flex-direction: column;
   @extend %commonContentComponent;
   @extend %commonForm;
+  background: url("../../images/login/Meteor.svg") 50%/cover no-repeat;
 }
 
 @media screen and (max-width: 550px) {

@@ -2,7 +2,7 @@
 
 import styles from "./productItem.module.scss";
 import Image from "next/image";
-import addedImg from "../../images/products/added.webp";
+import addedImg from "../../images/store/added.webp";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { useEffect, useContext } from "react";

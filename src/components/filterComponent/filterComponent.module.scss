@@ -1,14 +1,20 @@
 .titleWrapperWhiteTheme {
   z-index: 8;
   position: fixed;
-  left: 0;
+  left: 50%;
   top: 100px;
-  padding-bottom: 20px;
-  width: 100%;
-  height: min-content;
+  transform: translateX(-50%);
   text-align: center;
+  height: 145px;
+  margin-top: 26px;
   background: white;
-  height: 185px;
+  border-radius: 10px;
+  padding: 0 20px;
+  min-width: 532px;
+  max-width: 532px;
+  h1 {
+    margin-top: 0;
+  }
   .filtersWrapper {
     display: flex;
     align-items: center;
@@ -16,11 +22,14 @@
   }
 }
 .titleWrapperDarkTheme {
-  background: black;
+  background: #121212;
 }
 
 @media screen and (max-width: 1024px) {
   .titleWrapperWhiteTheme {
+    min-width: 400px;
+    max-width: 400px;
+    height: 180px;
     h1 {
       margin: 0;
     }
@@ -39,10 +48,25 @@
   }
 }
 
-@media (max-width: 1024px) and (max-height: 600px) {
+@media screen and (max-width: 425px) {
   .titleWrapperWhiteTheme {
-    width: 50%;
-    top: 50%;
-    transform: translateY(-50%);
+    min-width: 250px;
+    max-width: 90%;
+    width: 300px;
+    transform: translateX(calc(-50% - 4px));
   }
 }
+
+@media (max-width: 1024px) and (max-height: 600px) {
+  .titleWrapperWhiteTheme {
+    max-width: 40%;
+    min-width: 235px;
+    width: 40%;
+    top: 50%;
+    left: 0;
+    transform: translate(5%, -50%);
+    margin-top: 0;
+    padding: 0 5px;
+  }
+}
+

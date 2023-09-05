@@ -1,23 +1,22 @@
 @import "../../scss/variables.scss";
+
 .footerWrapper {
   background: $blackTransparent;
   width: 100%;
-  min-height: 100px;
-  max-height: 100px;
+  min-height: 50px;
+  max-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   .description {
     font-size: 14px;
   }
 }
 
 @media screen and (max-height: 650px), screen and (max-width: 768px) {
-  .footerWrapper {
-    min-height: 50px;
-    max-height: 50px;
-    .description {
-      font-size: 10px;
-    }
+  .footerWrapper .description {
+    font-size: 10px;
   }
+
 }
