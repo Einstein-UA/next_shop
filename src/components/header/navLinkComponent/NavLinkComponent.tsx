@@ -1,39 +1,50 @@
 "use client";
 
 import styles from "./navLinkComponent.module.scss";
-import { useContext } from "react";
-import { ThemeContext } from "@/context/themeContext";
-import { ReactNode } from "react";
+import React, {SetStateAction, useContext, useEffect, useState} from "react";
+import {ThemeContext} from "@/context/themeContext";
+import {ReactNode} from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Props {
-  navTo: string;
-  title: string | ReactNode;
-  setAction?: any;
+    navTo: string,
+    title: string | ReactNode,
+    setAction?: any,
+    firstRenderLinkColor?: boolean,
+    setFirstRenderLinkColor?: React.Dispatch<SetStateAction<boolean>>
 }
 
-export default function NavLink({ navTo, title, setAction }: Props) {
-  const themeContext = useContext(ThemeContext);
+export default function NavLink({navTo, title, setAction}: Props) {
+    const [currentURL, setCurrentURL] = useState("/");
+    usePathname()
+    const pathname = usePathname()
+    useEffect(() => {
+        setCurrentURL(pathname);
+    }, [pathname]);
 
-  const handleClick = () => {
-    if (setAction) {
-      setAction(false);
-    }
-  };
+    const themeContext = useContext(ThemeContext);
 
-  return (
-    <div className={styles.nawLinkWrapper}>
-      <Link
-        onClick={handleClick}
-        className={
-          themeContext.themeData
-            ? styles.navLinkWhiteTheme
-            : styles.navLinkDarkTheme
+    const handleClick = () => {
+        if (setAction) {
+            setAction(false);
         }
-        href={navTo}
-      >
-        {title}
-      </Link>
-    </div>
-  );
+    };
+
+    return (
+        <div className={styles.nawLinkWrapper}>
+            <Link
+                onClick={handleClick}
+                className={
+                  themeContext.themeData
+                    ? `${styles.navLinkWhiteTheme} ${currentURL===navTo && styles.activeColorLink}`
+                    : `${styles.navLinkDarkTheme} ${currentURL===navTo && styles.activeColorLink}`
+                }
+
+                href={navTo}
+            >
+                {title}
+            </Link>
+        </div>
+    );
 }

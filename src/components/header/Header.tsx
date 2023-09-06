@@ -7,6 +7,7 @@ import LogoComponent from "./logoComponent/LogoComponent";
 import BannerComponent from "../bannerComponent/BannerComponent";
 
 export default function Header() {
+
   return (
     <header className={styles.headerWrapper}>
       <BannerComponent position="top" />
@@ -20,7 +21,7 @@ export default function Header() {
         <NavLinkComponent navTo={"/login"} title={"LOG IN"} />
       </div>
 
-      <div className={styles.themeButtonCartgWrapper}>
+      <div className={styles.themeButtonCartWrapper}>
         <ThemeButton />
         <CartLinkComponent navTo={"/cart"} />
       </div>

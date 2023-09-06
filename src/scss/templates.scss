@@ -77,17 +77,11 @@
     text-decoration: none;
     color: white;
     white-space: nowrap;
-    &:focus {
-      color: $commonRed;
-    }
   }
   .navLinkWhiteTheme {
     text-decoration: none;
     color: black;
     white-space: nowrap;
-    &:focus {
-      color: $commonRed;
-    }
   }
 }
 

@@ -1,5 +1,9 @@
 @import '../../../scss/templates.scss';
+@import '../../../scss/variables';
 
 .nawLinkWrapper {
 @extend %commonLink;
+  .activeColorLink {
+    color: $commonRed;
+  }
 }

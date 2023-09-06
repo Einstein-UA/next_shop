@@ -11,8 +11,9 @@ interface Props {
 }
 
 export default function BannerComponent({ position }: Props) {
+
   const { isBannerActive } = useLogoContext();
-console.log(isBannerActive)
+
   return (
     <div
       className={

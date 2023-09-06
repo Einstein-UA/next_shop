@@ -6,8 +6,8 @@ import addedImg from "../../images/store/added.webp";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { useEffect, useContext } from "react";
-import { useProductsFilterContext } from "../../context/productsFilterContext";
-import { useCartContext } from "../../context/cartContext";
+import { useProductsFilterContext } from "@/context/productsFilterContext";
+import { useCartContext } from "@/context/cartContext";
 import { ThemeContext } from "@/context/themeContext";
 
 
