@@ -11,46 +11,101 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import yellowStar from '../../../images/aboutUs/yellowStar.webp'
 import grayStar from '../../../images/aboutUs/grayStar.webp'
+import {useToggle} from "@/hooks/useToggle";
+import {useEffect, useState, useRef, useContext} from "react";
+import { ThemeContext } from '@/context/themeContext'
+
 
 
 const Slider = () => {
 
+    const [containerHeight, setContainerHeight] = useState<Array<number>>([])
+    const [scrollHeight, setScrollHeight] = useState<Array<number>>([])
+    const [swiperInstance, setSwiperInstance] = useState<any>(null);
+
+    const themeContext = useContext(ThemeContext)
 
     return (
-            <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={50}
-                slidesPerView={1}
-                navigation
-                pagination={{clickable: true}}
-                loop={true}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
-                className={styles.swiperStyles}
-            >
-                {clientData.map(el => {
-                    return (
-                        <SwiperSlide key={el.id} className={styles.slideStyle}>
-                            <div
-                                  className={styles.clientItem}>
-                                <div className={styles.avatarWrapper}>
-                                    <Image src={el.url} alt='Avatar' width={50} height={50}/>
-                                </div>
-                                <div className={styles.fitBackWrapper}>
+        <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            speed={500}
+            spaceBetween={50}
+            slidesPerView={1}
+            navigation
+            pagination={{clickable: true}}
+            loop={true}
+            autoplay={{delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true}}
+            allowTouchMove={true}
+            onSwiper={setSwiperInstance}
+            className={styles.swiperStyles}
+        >
+            {clientData.map((el, index) => {
+                const [isActive, setActive] = useToggle(false)
+                const ref = useRef<any>(null)
+                useEffect(() => {
+                    const refEl = ref.current
+                    if (refEl) {
+                        setScrollHeight(prev => [...prev, refEl.scrollHeight]);
+
+                        setContainerHeight(prev => [...prev, refEl.clientHeight]);
+                    }
+                }, [])
+                const onHandleClick = () => {
+                    setActive(true)
+                    if (swiperInstance) {
+                        swiperInstance.autoplay.stop();
+                    }
+                }
+                const onHandleUnActive = () => {
+                    setActive(false)
+                    if (swiperInstance) {
+                        swiperInstance.autoplay.start();
+                    }
+                }
+                console.log(isActive)
+                return (
+                    <SwiperSlide key={el.id} className={styles.slideStyle}>
+                        <div className={styles.clientItem}>
+                            <div className={styles.avatarWrapper}>
+                                <Image src={el.url} alt='Avatar' width={50} height={50}/>
+                            </div>
+                            <div className={styles.fitBackWrapper}>
+                                <div ref={ref} className={styles.fitBack}>
                                     <p>{el.fitBack}</p>
-                                </div>
-                                <div className={styles.starsWrapper}>
-                                    {[...Array(el.stars)].map((_, index) => (
-                                        <Image key={index} src={yellowStar} alt='Star' width={20} height={20}/>
-                                    ))}
-                                    {[...Array(5 - el.stars)].map((_, index) => (
-                                        <Image key={index} src={grayStar} alt='Star' width={20} height={20}/>
-                                    ))}
+                                    {scrollHeight[index] > containerHeight[index] ?
+                                        <button onClick={onHandleClick} className={styles.moreBtn}><b>...more</b>
+                                        </button> : ''}
+                                    {isActive ?
+                                    <div style={{background: themeContext.themeData ? 'white' : 'black'}} onDoubleClick={onHandleUnActive} className={styles.moreBtnActiveContent}>
+                                        <svg
+                                            onClick={onHandleUnActive}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill={themeContext.themeData ? 'black' : 'white'}
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            className={styles.closeButton}
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                        <p>{el.fitBack}</p>
+                                    </div>
+                                    : ''}
                                 </div>
                             </div>
-                        </SwiperSlide>
-                    )
-                })}
-            </Swiper>
+
+                            <div className={styles.starsWrapper}>
+                                {[...Array(el.stars)].map((_, index) => (
+                                    <Image key={index} src={yellowStar} alt='Star' width={20} height={20}/>
+                                ))}
+                                {[...Array(5 - el.stars)].map((_, index) => (
+                                    <Image key={index} src={grayStar} alt='Star' width={20} height={20}/>
+                                ))}
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                )
+            })}
+        </Swiper>
     );
 };
 

@@ -1,42 +1,85 @@
 @import '../../../scss/variables';
+@import '../../../scss/templates';
 
 .swiperStyles {
   background: $blackTransparent;
   width: 40%;
   height: 100%;
+
   .slideStyle {
 
-      .clientItem {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+    .clientItem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
 
-        .avatarWrapper {
-          width: 50px;
-         height: 50px;
-          border: 3px solid $commonRed;
-          border-radius: 50%;
-          margin: 10px;
+      .avatarWrapper {
+        width: 50px;
+        height: 50px;
+        border: 3px solid $commonRed;
+        border-radius: 50%;
+        margin: 10px;
+        overflow: hidden;
+      }
+
+      .fitBackWrapper {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        .fitBack {
+          height: 130px;
           overflow: hidden;
-        }
-
-        .fitBackWrapper {
-          max-height: 150px;
-          min-height: 50px;
-          overflow: auto;
           border: 1px solid #7c7c7c;
           border-radius: 10px;
           margin: 0 50px 15px 50px;
-          padding: 5px;
+          padding: 7px;
           background: rgba(93, 88, 88, 0.21);
+          position: relative;
+          top: 0;
+          left: 0;
+
+          p {
+            margin: 0
+          }
+
+          .moreBtnActiveContent {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 30px 5px;
+            overflow: auto;
+            .closeButton {
+              width: 50px;
+              height: 50px;
+            }
+          }
+
+          .moreBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            right: 7px;
+            bottom: 2px;
+            border: none;
+            height: 17px;
+            width: min-content;
+            @extend %commonBtn;
+          }
         }
-        .starsWrapper {
-          margin-bottom: 20px;
-        }
+      }
+
+      .starsWrapper {
+        margin-bottom: 20px;
       }
     }
   }
+}
 
 @media screen and (max-width: 1024px) {
   .swiperStyles {
