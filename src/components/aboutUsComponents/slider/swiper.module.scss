@@ -1,0 +1,45 @@
+@import '../../../scss/variables';
+
+.swiperStyles {
+  background: $blackTransparent;
+  width: 40%;
+  height: 100%;
+  .slideStyle {
+
+      .clientItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .avatarWrapper {
+          width: 50px;
+         height: 50px;
+          border: 3px solid $commonRed;
+          border-radius: 50%;
+          margin: 10px;
+          overflow: hidden;
+        }
+
+        .fitBackWrapper {
+          max-height: 150px;
+          min-height: 50px;
+          overflow: auto;
+          border: 1px solid #7c7c7c;
+          border-radius: 10px;
+          margin: 0 50px 15px 50px;
+          padding: 5px;
+          background: rgba(93, 88, 88, 0.21);
+        }
+        .starsWrapper {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+
+@media screen and (max-width: 1024px) {
+  .swiperStyles {
+    width: 100%;
+  }
+}

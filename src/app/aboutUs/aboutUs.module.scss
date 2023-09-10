@@ -3,4 +3,19 @@
 .aboutUsWrapper {
   @extend %commonContentComponent;
   background: url("../../images/aboutUs/Rect_Light1.svg") 50%/cover no-repeat;
+  height: min-content;
+  overflow: auto;
+
+}
+
+@media screen and (max-width: 768px) {
+  .aboutUsWrapper {
+    h1 {
+      margin: 0;
+    }
+    p {
+      font-size: 14px;
+      margin: 0;
+    }
+  }
 }

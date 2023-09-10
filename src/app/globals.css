@@ -39,6 +39,17 @@ body {
   height: 100vh;
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+  color: hwb(0 16% 22%) !important;
+}
+.swiper-pagination-bullet {
+  background: hwb(0 16% 22%) !important;
+}
+.swiper-pagination-bullet-active {
+  background: hwb(0 16% 22%) !important;
+}
+
 @media screen and (max-width: 1024px){
   h1{
     margin-bottom: 0;

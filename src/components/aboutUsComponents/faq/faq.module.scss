@@ -1,0 +1,14 @@
+.faqWrapper {
+  h2 {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .faqWrapper {
+    h2 {
+      font-size: 20px;
+    }
+  }
+}
