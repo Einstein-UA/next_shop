@@ -13,8 +13,7 @@ import yellowStar from '../../../images/aboutUs/yellowStar.webp'
 import grayStar from '../../../images/aboutUs/grayStar.webp'
 import {useToggle} from "@/hooks/useToggle";
 import {useEffect, useState, useRef, useContext} from "react";
-import { ThemeContext } from '@/context/themeContext'
-
+import {ThemeContext} from '@/context/themeContext'
 
 
 const Slider = () => {
@@ -22,16 +21,28 @@ const Slider = () => {
     const [containerHeight, setContainerHeight] = useState<Array<number>>([])
     const [scrollHeight, setScrollHeight] = useState<Array<number>>([])
     const [swiperInstance, setSwiperInstance] = useState<any>(null);
+    const [isBtnClicked, setBtnClicked] = useState(false)
+
+    const prevBtn = useRef<any>(null);
+    const nextBtn = useRef<any>(null);
 
     const themeContext = useContext(ThemeContext)
 
+    const onHandleSlide = () => {
+        setBtnClicked(true)
+    }
+    console.log(swiperInstance)
     return (
         <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             speed={500}
             spaceBetween={50}
             slidesPerView={1}
-            navigation
+            navigation={{
+                prevEl: prevBtn.current,
+                nextEl: nextBtn.current,
+            }}
+
             pagination={{clickable: true}}
             loop={true}
             autoplay={{delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true}}
@@ -39,6 +50,7 @@ const Slider = () => {
             onSwiper={setSwiperInstance}
             className={styles.swiperStyles}
         >
+
             {clientData.map((el, index) => {
                 const [isActive, setActive] = useToggle(false)
                 const ref = useRef<any>(null)
@@ -50,6 +62,17 @@ const Slider = () => {
                         setContainerHeight(prev => [...prev, refEl.clientHeight]);
                     }
                 }, [])
+
+                useEffect(() => {
+                    if(isBtnClicked) {
+                        setActive(false)
+                        if (swiperInstance) {
+                            swiperInstance.autoplay.start();
+                        }
+                        setBtnClicked(false)
+                    }
+                },[isBtnClicked])
+
                 const onHandleClick = () => {
                     setActive(true)
                     if (swiperInstance) {
@@ -62,7 +85,7 @@ const Slider = () => {
                         swiperInstance.autoplay.start();
                     }
                 }
-                console.log(isActive)
+
                 return (
                     <SwiperSlide key={el.id} className={styles.slideStyle}>
                         <div className={styles.clientItem}>
@@ -76,20 +99,22 @@ const Slider = () => {
                                         <button onClick={onHandleClick} className={styles.moreBtn}><b>...more</b>
                                         </button> : ''}
                                     {isActive ?
-                                    <div style={{background: themeContext.themeData ? 'white' : 'black'}} onDoubleClick={onHandleUnActive} className={styles.moreBtnActiveContent}>
-                                        <svg
-                                            onClick={onHandleUnActive}
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill={themeContext.themeData ? 'black' : 'white'}
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            className={styles.closeButton}
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                                        </svg>
-                                        <p>{el.fitBack}</p>
-                                    </div>
-                                    : ''}
+                                        <div style={{background: themeContext.themeData ? 'white' : 'black'}}
+                                             onDoubleClick={onHandleUnActive} className={styles.moreBtnActiveContent}>
+                                            <svg
+                                                onClick={onHandleUnActive}
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill={themeContext.themeData ? 'black' : 'white'}
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                                className={styles.closeButton}
+                                            >
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                      d="M6 18L18 6M6 6l12 12"></path>
+                                            </svg>
+                                            <p>{el.fitBack}</p>
+                                        </div>
+                                        : ''}
                                 </div>
                             </div>
 
@@ -105,6 +130,37 @@ const Slider = () => {
                     </SwiperSlide>
                 )
             })}
+
+            <div ref={prevBtn} className={`${styles.sliderBtn} ${styles.prevBtn}`}>
+                <svg
+                    onClick={onHandleSlide}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    stroke={themeContext.themeData ? 'black' : 'white'}
+                    viewBox="0 0 32 32"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    height={130}
+                >
+                    <path d="M17 25l-9-9 9-9"/>
+                </svg>
+            </div>
+            <div ref={nextBtn} className={`${styles.sliderBtn} ${styles.nextBtn}`}>
+                <svg
+                    onClick={onHandleSlide}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    stroke={themeContext.themeData ? 'black' : 'white'}
+                    viewBox="0 0 32 32"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    height={130}
+                >
+                    <path d="M8 25l9-9-9-9"/>
+                </svg>
+            </div>
         </Swiper>
     );
 };
