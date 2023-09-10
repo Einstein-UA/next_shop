@@ -1,4 +1,11 @@
-export const clientData: Array<object> = [
+interface ClientData {
+    id: number,
+    url: string,
+    stars: number,
+    fitBack: string,
+}
+
+export const clientData: Array<ClientData> = [
     {
         id: 1,
         url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqCtugtDIrbNBnF7QpKQSX3zro21xsTkylZQ&usqp=CAU',

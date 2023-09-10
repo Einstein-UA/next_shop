@@ -12,6 +12,7 @@ import 'swiper/css/scrollbar';
 import yellowStar from '../../../images/aboutUs/yellowStar.webp'
 import grayStar from '../../../images/aboutUs/grayStar.webp'
 
+
 const Slider = () => {
 
 
