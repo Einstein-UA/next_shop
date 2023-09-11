@@ -43,9 +43,8 @@
   .contentWrapper {
     height: 0;
     margin: 0 10px;
-
+    background: $commonGreyHover;
     overflow: hidden;
-    background: $blackTransparent;
     transition: $transition_0_4s;
     border-radius: 0 0 5px 5px;
     p{
@@ -59,6 +58,5 @@
     transition: $transition_0_4s;
     overflow-x: hidden;
     overflow-y: auto;
-    background: $commonGreyHover;
   }
 }
