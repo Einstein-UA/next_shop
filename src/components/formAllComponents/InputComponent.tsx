@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./input.module.scss";
+import { useFormContext } from '../../context/formContext'
 
 interface Props {
   inputStyle: string;
@@ -27,16 +28,20 @@ export default function InputComponent({
   placeholder,
   textarea,
 }: Props) {
-  const [formData, setFormdata] = useState<FormValues>({
+
+  const [formData, setFormData] = useState<FormValues>({
     Name: "",
     Email: "",
     Message: "",
     Password: "",
   });
-  const [formDataSymbols, setFormDataSymbols] = useState<string[]>([]);
-  const [lastSymbol, setLastSymbol] = useState<string[]>([]);
+
+  const [enteredInputsSymbols, setEnteredInputsSymbols] = useState<string[]>([]);
+  const [lastEnteredSymbol, setLastEnteredSymbol] = useState<string[]>([]);
   const [winHeight, setWinHeight] = useState<number>(0);
   const [winWidth, setWinWidth] = useState<number>(0);
+
+  const {isSubmitted} = useFormContext()
 
   useEffect(() => {
     const winHeight = window.innerHeight;
@@ -61,8 +66,8 @@ export default function InputComponent({
   };
 
   const symbolStyles: any = {
-    position: "absolute",
-    top: `${getRandomValue(0, winHeight - 500)}px`,
+    position: "fixed",
+    top: `${getRandomValue(0, winHeight)}px`,
     left: `${getRandomValue(0, winWidth)}px`,
     color: getRandomColor(),
   };
@@ -75,36 +80,33 @@ export default function InputComponent({
         clearTimeout(timer);
       }
       timer = setTimeout(() => {
-        setLastSymbol([]);
+        setLastEnteredSymbol([]);
       }, 500);
     };
 
-    if (formDataSymbols) {
-      setLastSymbol([formDataSymbols.slice(-1)[0]]);
+    if (enteredInputsSymbols) {
+      setLastEnteredSymbol([enteredInputsSymbols.slice(-1)[0]]);
       updateTimer();
     }
 
     return () => clearTimeout(timer);
-  }, [formDataSymbols]);
+  }, [enteredInputsSymbols]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormdata((prev) => ({ ...prev, [name]: value }));
-    setFormDataSymbols((prev) => [...prev, value.charAt(value.length - 1)]);
-  };
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setEnteredInputsSymbols(prev => [...prev, value.charAt(value.length - 1)]);
   };
 
+  console.log(formData)
   return (
     <>
-      {lastSymbol.map((el: any, index: number) => {
+      {lastEnteredSymbol.map((el: any, index: number) => {
         return (
           <h1
             key={index}
-            style={lastSymbol && symbolStyles}
+            style={lastEnteredSymbol && symbolStyles}
             className={styles.lastSymbol}
           >
             {el}

@@ -54,7 +54,7 @@ const ProductsFilterContext = createContext<ContextProps>({
     },
 });
 
-export const ProductsFilterProvider = ({children}: any) => {
+export const ProductsFilterConextProvider = ({children}: any) => {
     const [categories, setCategories] = useState("all");
     const [productsPerPage, setProductsPerPage] = useState(10);
     const [searchData, setSearchData] = useState("");

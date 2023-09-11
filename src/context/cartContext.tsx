@@ -29,7 +29,7 @@ const CartContext = createContext<ContextProps>({
   setItemAdded: () => {},
 });
 
-export const CartProvider = ({ children }: any) => {
+export const CartContextProvider = ({ children }: any) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isItemAdded, setItemAdded] = useState(false)
 

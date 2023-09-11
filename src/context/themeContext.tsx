@@ -12,7 +12,7 @@ export const ThemeContext = createContext<ContextType>({
   setThemeData: () => {},
 });
 
-export function ThemeProvider({ children }: any) {
+export function ThemeContextProvider({ children }: any) {
 
   const [themeData, setThemeData] = useState<boolean | null>(null);
 

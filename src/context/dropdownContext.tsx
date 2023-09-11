@@ -12,7 +12,7 @@ const DropdownConext = createContext<ContextProps>({
   setActive: () => {},
 });
 
-export const DropdownProvider = ({ children }: any) => {
+export const DropdownContextProvider = ({ children }: any) => {
   const [isActive, setActive] = useToggle(false);
 
   return (

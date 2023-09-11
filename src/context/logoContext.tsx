@@ -12,7 +12,7 @@ const LogoContext = createContext<ContextProps>({
   setBannerActive: () => {},
 });
 
-export const LogoProvider = ({ children }: any) => {
+export const LogoContextProvider = ({ children }: any) => {
   const [isBannerActive, setBannerActive] = useToggle(false);
 
   return (
