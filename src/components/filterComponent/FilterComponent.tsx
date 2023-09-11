@@ -5,6 +5,7 @@ import DropdownItemsPerPage from "./dropDownItemsPerPageComponent/DropdownItemsP
 import DropdownCategories from "./dropDownCategoriesComponent/DropdownCategories";
 import SearchComponent from "./searchComponent/SearchComponent";
 import { ThemeContext } from "@/context/themeContext";
+import { useProductsFilterContext } from "@/context/productsFilterContext";
 import { useContext } from "react";
 import Paginator from "../paginator/Paginator";
 
@@ -14,13 +15,14 @@ interface Props {
 
 export default function FilterComponent({ data }: Props) {
   const themeContext = useContext(ThemeContext);
+  const {scrollingFilterVisibility} = useProductsFilterContext()
 
   return (
     <div
       className={
         themeContext.themeData
-          ? styles.titleWrapperWhiteTheme
-          : `${styles.titleWrapperWhiteTheme} ${styles.titleWrapperDarkTheme}`
+          ? scrollingFilterVisibility ? `${styles.titleWrapperWhiteTheme} ${styles.filtersWrapperScrolling}` : styles.titleWrapperWhiteTheme
+          : scrollingFilterVisibility ? `${styles.titleWrapperWhiteTheme} ${styles.titleWrapperDarkTheme} ${styles.filtersWrapperScrolling}` : `${styles.titleWrapperWhiteTheme} ${styles.titleWrapperDarkTheme}`
       }
     >
 

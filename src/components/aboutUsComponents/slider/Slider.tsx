@@ -31,7 +31,7 @@ const Slider = () => {
     const onHandleSlide = () => {
         setBtnClicked(true)
     }
-    console.log(swiperInstance)
+
     return (
         <Swiper
             modules={[Navigation, Pagination, Autoplay]}
