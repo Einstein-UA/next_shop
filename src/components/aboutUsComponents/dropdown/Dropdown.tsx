@@ -16,7 +16,7 @@ export default function Dropdown({ title, content, customTitleStyles, customCont
     const [contentVisibility, setContentVisibility] = useState(false)
 
     useEffect(() => {
-        let timeout
+        let timeout:NodeJS.Timeout;
         if(dropdownActive) {
             timeout = setTimeout(() => {
                 setContentVisibility(true)
