@@ -1,0 +1,64 @@
+@import "../../../scss/variables";
+
+.dropdownWrapper {
+  width: 100%;
+  height: min-content;
+
+  .titleWrapper {
+    background: $blackTransparent;
+    text-align: left;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0 10px;
+    border-radius: 5px ;
+    cursor: pointer;
+    transition: $transition_0_2s;
+    &:hover {
+      background: $commonGreyHover;
+      transition: $transition_0_2s;
+    }
+    p{
+      margin: 0;
+      padding: 20px 55px 20px 0;
+    }
+
+    .arrowBtn {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transition: $transition_0_4s;
+      transform: translateY(-50%);
+    }
+
+    .arrowBtnActive {
+      transform: rotate(180deg) translateY(50%);
+    }
+  }
+  .titleWrapperActive {
+    border-radius: 5px 5px 0 0;
+    background: $commonGreyHover;
+  }
+
+  .contentWrapper {
+    height: 0;
+    margin: 0 10px;
+
+    overflow: hidden;
+    background: $blackTransparent;
+    transition: $transition_0_4s;
+    border-radius: 0 0 5px 5px;
+    p{
+      margin: 0;
+      padding: 20px 0;
+    }
+
+  }
+  .contentWrapperActive {
+    height: 300px;
+    transition: $transition_0_4s;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: $commonGreyHover;
+  }
+}

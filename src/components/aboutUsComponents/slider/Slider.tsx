@@ -143,7 +143,7 @@ const Slider = () => {
                     strokeLinejoin="round"
                     height={130}
                 >
-                    <path d="M17 25l-9-9 9-9"/>
+                    <path d="M16 25l-9-9 9-9"/>
                 </svg>
             </div>
             <div ref={nextBtn} className={`${styles.sliderBtn} ${styles.nextBtn}`}>
@@ -158,7 +158,7 @@ const Slider = () => {
                     strokeLinejoin="round"
                     height={130}
                 >
-                    <path d="M8 25l9-9-9-9"/>
+                    <path d="M8.5 25l9-9-9-9"/>
                 </svg>
             </div>
         </Swiper>
