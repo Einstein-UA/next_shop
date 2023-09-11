@@ -1,7 +1,7 @@
 'use client'
 
 import styles from './dropdown.module.scss';
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import { ThemeContext } from '@/context/themeContext';
 
 interface Props {
@@ -13,6 +13,23 @@ interface Props {
 export default function Dropdown({ title, content, customTitleStyles, customContentStyles }:Props) {
 
     const [dropdownActive, setDropdownActive] = useState(false)
+    const [contentVisibility, setContentVisibility] = useState(false)
+
+    useEffect(() => {
+        let timeout
+        if(dropdownActive) {
+            timeout = setTimeout(() => {
+                setContentVisibility(true)
+            },300)
+        } else {
+            timeout = setTimeout(() => {
+                setContentVisibility(false)
+            },300)
+        }
+
+        return () => clearTimeout(timeout)
+
+    },[dropdownActive])
 
     const themeContext = useContext(ThemeContext);
 
@@ -37,7 +54,7 @@ export default function Dropdown({ title, content, customTitleStyles, customCont
 
             </div>
             <div style={customContentStyles && dropdownActive? customContentStyles : {}} className={!dropdownActive ? styles.contentWrapper : `${styles.contentWrapper} ${styles.contentWrapperActive}`}>
-                <p>{content}</p>
+                {contentVisibility ? <p>{content}</p> : ''}
             </div>
         </div>
     )
