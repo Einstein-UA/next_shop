@@ -43,14 +43,14 @@ export default function Form({
     })
 
 
-    const validateForm = () => {
-        let isValid = true;
-
-        if (id === 'contactUsForm' && formData.name.length < 2) {
-            isValid = false;
+    // const validateForm = () => {
+    //     let isValid = true;
+    //
+        // if (id === 'contactUsForm' && formData.name.length < 2) {
+        //     isValid = false;
             // setErrors(name = "Name must be at least 2 characters long.");
-        }
-
+        // }
+        //
         // const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         // if (!emailPattern.test(email)) {
         //     isValid = false;
@@ -61,9 +61,9 @@ export default function Form({
         //     isValid = false;
         //     errors.message = "Message must be at least 10 characters long.";
         // }
-
-        return {isValid};
-    };
+    //
+    //     return {isValid};
+    // };
 
 
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -78,17 +78,37 @@ export default function Form({
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Перевірка на заповненість обов'язкових полів
-        // if (!formData.name || !formData.email || !formData.message || !formData.login || !formData.password) {
-        //     alert('Please fill in all fields');
-        //     return;
-        // }
-        // Ваш код для відправлення форми
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        let isValid = true;
+        if (!formData.name || !formData.email || !formData.message || !formData.login || !formData.password) {
+            isValid = false;
+            setErrors(prev => ({
+                ...prev,
+                name: !formData.name ? "field required" : "",
+                email: !formData.email ? "field required" : "",
+                message: !formData.message ? "field required" : "",
+                login: !formData.login ? "field required" : "",
+                password: !formData.password ? "field required" : "",
+            }));
+        }
 
-        if (formData.name.length < 2) {
+        if(formData.name.length < 2) {
             setErrors({
                 ...isErrors,
                 name: "Minimum 2 characters "
+            });
+            return;
+        }
+        if(!emailPattern.test(formData.email)) {
+                setErrors({
+                    ...isErrors,
+                    email: "Invalid email address"
+                });
+        }
+        if(formData.message.length < 15) {
+            setErrors({
+                ...isErrors,
+                message: "Minimum 15 characters "
             });
             return;
         }
