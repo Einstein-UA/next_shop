@@ -14,9 +14,9 @@ interface FormContextProps {
     setSubmitted: React.Dispatch<React.SetStateAction<boolean>>,
     formData: FormValues,
     setFormData: React.Dispatch<React.SetStateAction<FormValues>>,
-    enteredInputsSymbols: [string],
+    enteredInputsSymbols: string[],
     setEnteredInputsSymbols: React.Dispatch<React.SetStateAction<string[]>>,
-    lastEnteredSymbol: [string],
+    lastEnteredSymbol: string[],
     setLastEnteredSymbol: React.Dispatch<React.SetStateAction<string[]>>,
 }
 
@@ -35,10 +35,10 @@ const FormContext = createContext<FormContextProps>({
     },
     setFormData: () => {
     },
-    enteredInputsSymbols: [''],
+    enteredInputsSymbols: [],
     setEnteredInputsSymbols: () => {
     },
-    lastEnteredSymbol: [''],
+    lastEnteredSymbol: [],
     setLastEnteredSymbol: () => {
     },
 })
