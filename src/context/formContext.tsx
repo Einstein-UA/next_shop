@@ -44,8 +44,8 @@ const FormContext = createContext<FormContextProps>({
 })
 
 export const FormContextProvider = ({children}: any) => {
-    const [enteredInputsSymbols, setEnteredInputsSymbols] = useState<string[]>(['']);
-    const [lastEnteredSymbol, setLastEnteredSymbol] = useState<string[]>(['']);
+    const [enteredInputsSymbols, setEnteredInputsSymbols] = useState<string[]>([]);
+    const [lastEnteredSymbol, setLastEnteredSymbol] = useState<string[]>([]);
     const [isSubmitted, setSubmitted] = useState(false)
     const [formData, setFormData] = useState({
         name: "",
