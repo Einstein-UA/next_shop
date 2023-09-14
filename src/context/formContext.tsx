@@ -1,29 +1,3 @@
-// 'use client'
-// import React, {useContext, createContext, useState} from "react";
-//
-// interface FormContextProps {
-//     isSubmitted: boolean,
-//     setSubmitted: React.Dispatch<React.SetStateAction<boolean>>
-// }
-//
-// const FormContext = createContext<FormContextProps>({
-//     isSubmitted: false,
-//     setSubmitted: () => {},
-// })
-//
-// export const FormContextProvider = ({children}: any) => {
-//     const [isSubmitted, setSubmitted] = useState(false)
-//
-//     return (
-//         <FormContext.Provider value={{isSubmitted, setSubmitted}}>
-//             {children}
-//         </FormContext.Provider>
-//     )
-// }
-//
-// export const useFormContext = () => useContext(FormContext)
-
-
 'use client'
 import React, {useContext, createContext, useState} from "react";
 
@@ -41,7 +15,7 @@ interface FormContextProps {
     formData: FormValues,
     setFormData: React.Dispatch<React.SetStateAction<FormValues>>,
     enteredInputsSymbols: [string],
-    setEnteredInputsSymbols: React.Dispatch<React.SetStateAction<[string]>>,
+    setEnteredInputsSymbols: React.Dispatch<React.SetStateAction<string[]>>,
     lastEnteredSymbol: [string],
     setLastEnteredSymbol: React.Dispatch<React.SetStateAction<[string]>>,
 }

@@ -69,7 +69,7 @@ export default function Form({
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
         setFormData(prevData => ({...prevData, [name]: value.trim()}));
-        setEnteredInputsSymbols(prev => [...prev, value.charAt(value.length - 1)] as string[]);
+        setEnteredInputsSymbols(prev => [...prev, value.charAt(value.length - 1)]);
         setErrors({
             ...isErrors,
             [name]: ""
