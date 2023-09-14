@@ -17,7 +17,7 @@ interface FormContextProps {
     enteredInputsSymbols: [string],
     setEnteredInputsSymbols: React.Dispatch<React.SetStateAction<string[]>>,
     lastEnteredSymbol: [string],
-    setLastEnteredSymbol: React.Dispatch<React.SetStateAction<[string]>>,
+    setLastEnteredSymbol: React.Dispatch<React.SetStateAction<string[]>>,
 }
 
 
@@ -38,14 +38,14 @@ const FormContext = createContext<FormContextProps>({
     enteredInputsSymbols: [''],
     setEnteredInputsSymbols: () => {
     },
-    lastEnteredSymbol: [],
+    lastEnteredSymbol: [''],
     setLastEnteredSymbol: () => {
     },
 })
 
 export const FormContextProvider = ({children}: any) => {
-    const [enteredInputsSymbols, setEnteredInputsSymbols] = useState<string[]>([]);
-    const [lastEnteredSymbol, setLastEnteredSymbol] = useState<string[]>([]);
+    const [enteredInputsSymbols, setEnteredInputsSymbols] = useState<string[]>(['']);
+    const [lastEnteredSymbol, setLastEnteredSymbol] = useState<string[]>(['']);
     const [isSubmitted, setSubmitted] = useState(false)
     const [formData, setFormData] = useState({
         name: "",
