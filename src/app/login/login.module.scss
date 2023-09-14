@@ -1,44 +1,8 @@
-@import "../../scss/templates.scss";
+@import "../../scss/templates";
 
-.mainFormWrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.loginWrapper {
   @extend %commonContentComponent;
-  @extend %commonForm;
   background: url("../../images/login/Meteor.svg") 50%/cover no-repeat;
-}
-
-@media screen and (max-width: 550px) {
-  .mainFormWrapper {
-    max-width: 100vw;
-    h1 {
-      margin: 0;
-    }
-    .formWrapper {
-      width: 100%;
-      padding: 20px;
-      overflow-y: auto;
-      justify-content: center;
-      .formStyles {
-        max-width: 100%;
-      }
-    }
-  }
-}
-
-@media screen and (max-height: 650px) {
-  .mainFormWrapper {
-    h1 {
-      margin: 0;
-    }
-    .formWrapper {
-      padding: 20px;
-      overflow-y: auto;
-      justify-content: flex-start;
-      .formStyles {
-        min-height: 300px;
-      }
-    }
-  }
+  display: flex;
+  flex-direction: column;
 }
