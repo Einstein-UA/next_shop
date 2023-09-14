@@ -35,7 +35,7 @@ const FormContext = createContext<FormContextProps>({
     },
     setFormData: () => {
     },
-    enteredInputsSymbols: [],
+    enteredInputsSymbols: [''],
     setEnteredInputsSymbols: () => {
     },
     lastEnteredSymbol: [],
