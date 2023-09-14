@@ -48,7 +48,7 @@ export default function LastInputsSymbol() {
                 clearTimeout(timer);
             }
             timer = setTimeout(() => {
-                setLastEnteredSymbol([]);
+                setLastEnteredSymbol(['']);
             }, 500);
         };
 
