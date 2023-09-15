@@ -6,8 +6,8 @@ import React, {useState} from "react";
 import {useFormContext} from "@/context/formContext";
 import LastInputsSymbol from "@/components/form/lastInputsSymbol/LastInputsSymbol";
 
-interface Props {
-    id: string
+interface FormProps {
+    formID: string
     namePresent?: boolean,
     emailPresent?: boolean,
     messagePresent?: boolean
@@ -15,7 +15,7 @@ interface Props {
     passwordPresent?: boolean
 }
 
-interface ValidateFormData {
+interface ErrorsProps {
     name: string,
     email: string,
     message: string,
@@ -25,16 +25,25 @@ interface ValidateFormData {
 
 
 export default function Form({
-                                 id,
+                                 formID,
                                  namePresent = true,
                                  emailPresent = true,
                                  messagePresent = true,
                                  loginPresent = true,
                                  passwordPresent = true
-                             }: Props) {
+                             }: FormProps) {
 
-    const {formData, setFormData, setEnteredInputsSymbols} = useFormContext()
-    const [isErrors, setErrors] = useState<ValidateFormData>({
+    const {
+        isSubmitted,
+        setSubmitted,
+        loginFormData,
+        contactUsFormData,
+        setLoginFormData,
+        setContactUsFormData,
+        setLastEnteredSymbol
+    } = useFormContext()
+
+    const [isErrors, setErrors] = useState<ErrorsProps>({
         name: '',
         email: '',
         message: '',
@@ -43,88 +52,123 @@ export default function Form({
     })
 
 
-    // const validateForm = () => {
-    //     let isValid = true;
-    //
-        // if (id === 'contactUsForm' && formData.name.length < 2) {
-        //     isValid = false;
-            // setErrors(name = "Name must be at least 2 characters long.");
-        // }
-        //
-        // const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        // if (!emailPattern.test(email)) {
-        //     isValid = false;
-        //     errors.email = "Invalid email address.";
-        // }
-        //
-        // if (message.length < 10) {
-        //     isValid = false;
-        //     errors.message = "Message must be at least 10 characters long.";
-        // }
-    //
-    //     return {isValid};
-    // };
-
-
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
-        setFormData(prevData => ({...prevData, [name]: value.trim()}));
-        setEnteredInputsSymbols(prev => [...prev, value.charAt(value.length - 1)]);
+        let timeout
+        if (timeout) {
+            clearTimeout(timeout)
+        }
+
+        if (formID === 'contactUsForm') {
+            setContactUsFormData(prevData => ({...prevData, [name]: value}));
+        }
+        if (formID === 'loginForm') {
+            setLoginFormData(prevData => ({...prevData, [name]: value}));
+        }
+
+        setLastEnteredSymbol([value.charAt(value.length - 1)]);
+
         setErrors({
             ...isErrors,
             [name]: ""
         });
+        return () => clearTimeout(timeout)
     }
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         let isValid = true;
-        if (!formData.name || !formData.email || !formData.message || !formData.login || !formData.password) {
-            isValid = false;
-            setErrors(prev => ({
-                ...prev,
-                name: !formData.name ? "field required" : "",
-                email: !formData.email ? "field required" : "",
-                message: !formData.message ? "field required" : "",
-                login: !formData.login ? "field required" : "",
-                password: !formData.password ? "field required" : "",
-            }));
+        const newErrors = {
+            name: '',
+            email: '',
+            message: '',
+            login: '',
+            password: '',
+        };
+        const setFormSubmittedById = (id, value) => {
+            setSubmitted(prevState => ({...prevState, [id]: value}));
+        };
+
+        if (formID === 'contactUsForm') {
+            if (!contactUsFormData.name) {
+                isValid = false;
+                newErrors.name = "Field required";
+            } else if (contactUsFormData.name.length < 2) {
+                isValid = false;
+                newErrors.name = "Minimum 2 characters";
+            }
+
+            if (!contactUsFormData.email) {
+                isValid = false;
+                newErrors.email = "Field required";
+            } else if (!emailPattern.test(contactUsFormData.email)) {
+                isValid = false;
+                newErrors.email = "Invalid email address";
+            }
+
+            if (!contactUsFormData.message) {
+                isValid = false;
+                newErrors.message = "Field required";
+            } else if (contactUsFormData.message.length < 15) {
+                isValid = false;
+                newErrors.message = "Minimum 15 characters";
+            }
         }
 
-        if(formData.name.length < 2) {
-            setErrors({
-                ...isErrors,
-                name: "Minimum 2 characters "
-            });
-            return;
+        if (formID === 'loginForm') {
+            if (!loginFormData.login) {
+                isValid = false;
+                newErrors.login = "Field required";
+            } else if (loginFormData.login.length < 4) {
+                isValid = false;
+                newErrors.login = "Minimum 4 characters";
+            }
+
+            if (!loginFormData.password) {
+                isValid = false;
+                newErrors.password = "Field required";
+            } else if (loginFormData.password.length < 8) {
+                isValid = false;
+                newErrors.password = "Minimum 8 characters";
+            }
         }
-        if(!emailPattern.test(formData.email)) {
-                setErrors({
-                    ...isErrors,
-                    email: "Invalid email address"
-                });
+
+        setErrors(newErrors);
+
+        if (isValid && formID === 'contactUsForm') {
+            setTimeout(() => {
+                setContactUsFormData({
+                    name: '',
+                    email: '',
+                    message: '',
+                })
+                setFormSubmittedById(formID, true);
+            }, 1000)
         }
-        if(formData.message.length < 15) {
-            setErrors({
-                ...isErrors,
-                message: "Minimum 15 characters "
-            });
-            return;
+
+        if (isValid && formID === 'loginForm') {
+            setTimeout(() => {
+                setLoginFormData({
+                    login: '',
+                    password: '',
+                })
+                setFormSubmittedById(formID, true);
+            }, 1000)
         }
+
     }
-
-    console.log(isErrors)
 
     return (
         <div className={styles.formWrapper}>
             <LastInputsSymbol/>
-            <form id={id} className={styles.form}>
+            <form id={formID} className={styles.form}>
                 {namePresent && <div className={styles.inputLabelWrapper}>
                     <label htmlFor='name'>Name</label>
                     <input
                         onChange={onHandleChange}
-                        value={formData.name}
+                        value={contactUsFormData.name}
                         type='text'
                         id='name'
                         className={styles.input}
@@ -137,7 +181,7 @@ export default function Form({
                     <label htmlFor='email'>Email</label>
                     <input
                         onChange={onHandleChange}
-                        value={formData.email}
+                        value={contactUsFormData.email}
                         type='email'
                         id='email'
                         className={styles.input}
@@ -150,7 +194,7 @@ export default function Form({
                     <label htmlFor='message'>Message</label>
                     <textarea
                         onChange={onHandleChange}
-                        value={formData.message}
+                        value={contactUsFormData.message}
                         id='message'
                         className={`${styles.input} ${styles.textarea}`}
                         name='message'
@@ -162,7 +206,7 @@ export default function Form({
                     <label htmlFor='login'>Login</label>
                     <input
                         onChange={onHandleChange}
-                        value={formData.login}
+                        value={loginFormData.login}
                         type='text'
                         id='login'
                         className={styles.input}
@@ -175,7 +219,7 @@ export default function Form({
                     <label htmlFor='password'>Password</label>
                     <input
                         onChange={onHandleChange}
-                        value={formData.password}
+                        value={loginFormData.password}
                         type='password'
                         id='password'
                         className={styles.input}
@@ -184,8 +228,8 @@ export default function Form({
                     />
                     <span className={styles.error}>{isErrors.password}</span>
                 </div>}
-
-                <button onClick={handleSubmit}>SUBMIT</button>
+                {isSubmitted[formID] && <span className={styles.submittedSuccessfully}>Successfully submitted</span>}
+                <button disabled={isSubmitted[formID]} onClick={handleSubmit}>SUBMIT</button>
             </form>
         </div>
     )

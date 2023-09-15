@@ -1,11 +1,13 @@
 .lastSymbol {
+  position: fixed;
   animation-name: symbol;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
+  z-index: 9;
 }
 @keyframes symbol {
   0% {
-    transform: scale(30);
+    transform: scale(20);
     opacity: 1;
   }
   99% {

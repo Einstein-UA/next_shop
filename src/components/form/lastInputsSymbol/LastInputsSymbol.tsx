@@ -9,7 +9,7 @@ export default function LastInputsSymbol() {
     const [winHeight, setWinHeight] = useState<number>(0);
     const [winWidth, setWinWidth] = useState<number>(0);
 
-    const {lastEnteredSymbol, setLastEnteredSymbol, enteredInputsSymbols} = useFormContext()
+    const {lastEnteredSymbol, setLastEnteredSymbol} = useFormContext()
 
     useEffect(() => {
         const winHeight = window.innerHeight;
@@ -20,6 +20,16 @@ export default function LastInputsSymbol() {
         }
     }, []);
 
+    useEffect(() => {
+        let timeout
+        timeout = setTimeout(() => {
+            setLastEnteredSymbol([])
+        }, 450)
+        return () => clearTimeout(timeout)
+    }, [lastEnteredSymbol])
+
+
+
     const getRandomColor = () => {
         const letters = "0123456789ABCDEF";
         let color = "#";
@@ -29,44 +39,23 @@ export default function LastInputsSymbol() {
         return color;
     };
 
-    const getRandomValue = (min: any, max: any) => {
+    const getRandomPosition = (min: any, max: any) => {
         return Math.floor(Math.random() * (max - min)) + min;
     };
 
     const symbolStyles: any = {
-        position: "fixed",
-        top: `${getRandomValue(0, winHeight)}px`,
-        left: `${getRandomValue(0, winWidth)}px`,
+        top: `${getRandomPosition(0, winHeight)}px`,
+        left: `${getRandomPosition(0, winWidth)}px`,
         color: getRandomColor(),
     };
 
-    useEffect(() => {
-        let timer: any;
-
-        const updateTimer = () => {
-            if (timer) {
-                clearTimeout(timer);
-            }
-            timer = setTimeout(() => {
-                setLastEnteredSymbol(['']);
-            }, 500);
-        };
-
-        if (enteredInputsSymbols) {
-            setLastEnteredSymbol([enteredInputsSymbols.slice(-1)[0]]);
-            updateTimer();
-        }
-
-        return () => clearTimeout(timer);
-    }, [enteredInputsSymbols]);
-
     return (
         <>
-        {lastEnteredSymbol.map((el: any, index: number) => {
+            {lastEnteredSymbol.map((el: any, index: number) => {
                 return (
                     <h1
                         key={index}
-                        style={lastEnteredSymbol && symbolStyles}
+                        style={symbolStyles}
                         className={styles.lastSymbol}
                     >
                         {el}

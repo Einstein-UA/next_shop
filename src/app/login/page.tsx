@@ -5,7 +5,7 @@ export default function Login() {
     return(
         <div className={styles.loginWrapper}>
             <h1>LOG IN</h1>
-            <Form id='loginForm' namePresent={false} emailPresent={false} messagePresent={false}/>
+            <Form formID='loginForm' namePresent={false} emailPresent={false} messagePresent={false}/>
         </div>
     )
 }
