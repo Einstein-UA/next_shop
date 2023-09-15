@@ -5,6 +5,7 @@ import React, {useState} from "react";
 
 import {useFormContext} from "@/context/formContext";
 import LastInputsSymbol from "@/components/form/lastInputsSymbol/LastInputsSymbol";
+import {TimerOptions} from "timers";
 
 interface FormProps {
     formID: string
@@ -54,7 +55,7 @@ export default function Form({
 
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
-        let timeout
+        let timeout: NodeJS.Timeout
         if (timeout) {
             clearTimeout(timeout)
         }
