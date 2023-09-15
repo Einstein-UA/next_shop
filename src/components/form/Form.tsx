@@ -83,7 +83,7 @@ export default function Form({
             login: '',
             password: '',
         };
-        const setFormSubmittedById = (id, value) => {
+        const setFormSubmittedById = (id: string, value: boolean) => {
             setSubmitted(prevState => ({...prevState, [id]: value}));
         };
 
