@@ -21,7 +21,7 @@ export default function LastInputsSymbol() {
     }, []);
 
     useEffect(() => {
-        let timeout
+        let timeout: NodeJS.Timeout
         timeout = setTimeout(() => {
             setLastEnteredSymbol([])
         }, 450)
