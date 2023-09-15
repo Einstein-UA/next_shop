@@ -55,10 +55,6 @@ export default function Form({
 
     const onHandleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
-        let timeout: NodeJS.Timeout
-        if (timeout) {
-            clearTimeout(timeout)
-        }
 
         if (formID === 'contactUsForm') {
             setContactUsFormData(prevData => ({...prevData, [name]: value}));
@@ -73,7 +69,6 @@ export default function Form({
             ...isErrors,
             [name]: ""
         });
-        return () => clearTimeout(timeout)
     }
 
 
