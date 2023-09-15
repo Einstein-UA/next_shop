@@ -84,7 +84,7 @@ export default function Form({
             password: '',
         };
         const setFormSubmittedById = (id: string, value: boolean) => {
-            setSubmitted(prevState => ({...prevState, [id]: value}));
+            setSubmitted((prevState: any) => ({...prevState, [id]: value}));
         };
 
         if (formID === 'contactUsForm') {
