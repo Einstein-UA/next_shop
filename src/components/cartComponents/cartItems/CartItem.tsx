@@ -7,6 +7,13 @@ import {ThemeContext} from '@/context/themeContext';
 import {useContext, useEffect, useState} from "react";
 import Link from "next/link";
 
+interface CartItem {
+    id: number;
+    title: string;
+    price: number;
+    images: string[]; // або відповідний тип для масиву зображень
+}
+
 export default function CartItem() {
     const {cartItems, setCartItems} = useCartContext();
     const themeContext = useContext(ThemeContext)
@@ -27,7 +34,7 @@ export default function CartItem() {
         setCartItems([])
     }
 
-    const handleItemPlus = (item: { id: number, title: string, price: number, images: any }) => {
+    const handleItemPlus = (item:CartItem) => {
         const newCounts = {...itemCounts};
         if (!newCounts[item.id]) {
             newCounts[item.id] = 1;
@@ -37,7 +44,7 @@ export default function CartItem() {
 
         setTotalPrice(totalPrice + item.price);
     };
-    const handleItemMinus = (item: { id: number, title: string, price: number, images: any }) => {
+    const handleItemMinus = (item:CartItem) => {
         const newCounts = {...itemCounts};
         if (newCounts[item.id] > 1) {
             newCounts[item.id]--;
@@ -55,7 +62,7 @@ export default function CartItem() {
                 </button>
             </div>
             <div className={styles.cartItemWrapper}>
-                {cartItems.map((item, index) => {
+                {cartItems.map((item:any, index: number) => {
                     const handleDeleteItem = () => {
                         setCartItems(cartItems.filter(el => el.id !== item.id))
                     }
@@ -66,7 +73,7 @@ export default function CartItem() {
                                 color: 'black'
                             } : {textDecoration: "none", color: 'white'}} href={`/${item.id}`}>
                                 <Image
-                                    priority="true"
+                                    priority={true}
                                     src={item.images[0]}
                                     width={100}
                                     height={100}
