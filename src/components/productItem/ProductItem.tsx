@@ -76,12 +76,12 @@ export default function ProductItem({data}: Props) {
             }} href={`/${el.id}`}>
                 <div onTouchMove={onHandleScroll} onWheel={onHandleScroll} className={styles.productItem}>
                     {addedId.includes(el.id) ? (
-                        <Image priority="true" className={styles.addedImg} src={addedImg} alt="addedImg"/>
+                        <Image priority={true} className={styles.addedImg} src={addedImg} alt="addedImg"/>
                     ) : (
                         ""
                     )}
                     <div className={styles.imageWrapper}>
-                        <Image priority="true" src={imagesUrl[0]} width={100} height={100} alt="img"/>
+                        <Image priority={true} src={imagesUrl[0]} width={100} height={100} alt="img"/>
                     </div>
                     <div>
                         <div>

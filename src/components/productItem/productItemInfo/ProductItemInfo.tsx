@@ -70,7 +70,7 @@ export default function ProductItemInfo({id, product}: Props) {
                         className={`${styles.nextPrevBtnStyles} ${styles.prevBtnPosition}`}
                     >
                         <Image
-                            priority="true"
+                            priority={true}
                             src={btnLeft}
                             width={20}
                             height={30}
@@ -83,7 +83,7 @@ export default function ProductItemInfo({id, product}: Props) {
                         ""
                     ) : (
                         <Image
-                            priority="true"
+                            priority={true}
                             className={styles.image}
                             style={{borderRadius: "10px"}}
                             src={sliceImagesUrl[0]}
