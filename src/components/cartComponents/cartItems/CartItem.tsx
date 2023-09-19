@@ -11,12 +11,12 @@ export default function CartItem() {
     const {cartItems, setCartItems} = useCartContext();
     const themeContext = useContext(ThemeContext)
     const [totalPrice, setTotalPrice] = useState(0)
-    const [itemCounts, setItemCounts] = useState<any>({});
+    const [itemCounts, setItemCounts] = useState({});
 
 
     useEffect(() => {
         if (cartItems) {
-            setTotalPrice(cartItems.reduce((sum, item) => sum + (item.price * `${itemCounts[item.id] ? itemCounts[item.id] : 1}`), 0))
+            setTotalPrice(cartItems.reduce((sum, item) => sum + (item.price * (itemCounts[item.id] ? itemCounts[item.id] : 1)), 0))
         }
 
     }, [cartItems])
