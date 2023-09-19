@@ -27,7 +27,7 @@ export default function CartItem() {
         setCartItems([])
     }
 
-    const handleItemPlus = (item) => {
+    const handleItemPlus = (item: { id: number, title: string, price: number, images: any }) => {
         const newCounts = {...itemCounts};
         if (!newCounts[item.id]) {
             newCounts[item.id] = 1;
@@ -37,7 +37,7 @@ export default function CartItem() {
 
         setTotalPrice(totalPrice + item.price);
     };
-    const handleItemMinus = (item) => {
+    const handleItemMinus = (item: { id: number, title: string, price: number, images: any }) => {
         const newCounts = {...itemCounts};
         if (newCounts[item.id] > 1) {
             newCounts[item.id]--;
