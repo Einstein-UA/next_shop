@@ -2,10 +2,8 @@
 
 import styles from './form.module.scss'
 import React, {useState} from "react";
-
 import {useFormContext} from "@/context/formContext";
 import LastInputsSymbol from "@/components/form/lastInputsSymbol/LastInputsSymbol";
-import {TimerOptions} from "timers";
 
 interface FormProps {
     formID: string

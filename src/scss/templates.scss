@@ -13,6 +13,7 @@
   border-radius: 5px;
   transition: $transition_0_2s;
   box-shadow: 0 0 10px 1px rgba(255, 0, 0, 0.438);
+  cursor: pointer;
   &:hover {
     transition: $transition_0_2s;
     transform: scale(1.1);

@@ -15,13 +15,9 @@ const Comfortaa_Light = localFont({
 
 export default async function ProductInfo({ params: { id } }: Props) {
 
-
-
   const product = await fetch(`https://dummyjson.com/products/${id}`).then(
     (res) => res.json()
   );
-
-
 
   return (
     <div className={`${styles.ProductInfoWrapper} ${Comfortaa_Light.className}`}>

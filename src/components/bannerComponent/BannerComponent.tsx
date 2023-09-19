@@ -30,8 +30,8 @@ export default function BannerComponent({ position }: Props) {
         className={styles.sale}
         src={sale}
         alt="sale"
-        width={150}
-        height={100}
+        width={0}
+        height={0}
       />
       <Image
         className={styles.rocket}

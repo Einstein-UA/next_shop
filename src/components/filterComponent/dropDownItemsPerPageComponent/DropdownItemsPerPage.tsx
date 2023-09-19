@@ -1,12 +1,13 @@
 "use client";
+import React from "react";
 import styles from "./dropDownItemsPerPage.module.scss";
 import { useProductsFilterContext } from '../../../context/productsFilterContext'
 
 interface Props {
-  totoalProductsCount: number,
+  totalProductsCount: number,
 }
 
-export default function DropdownItemsPerPage({ totoalProductsCount }:Props) {
+export default function DropdownItemsPerPage({ totalProductsCount }:Props) {
 
   const {productsPerPage, setProductsPerPage, setCurrentPage, setPagePartFirstIndex } = useProductsFilterContext();
 
@@ -30,7 +31,7 @@ export default function DropdownItemsPerPage({ totoalProductsCount }:Props) {
       >
         <option value={3}>3</option>
         <option value={10}>10</option>
-        <option value={totoalProductsCount}>All</option>
+        <option value={totalProductsCount}>All</option>
       </select>
     </div>
   );

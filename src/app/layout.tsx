@@ -1,13 +1,14 @@
-import Header from "@/components/header/Header";
+import React from 'react'
 import "./globals.css";
-import Footer from "@/components/footer/Footer";
+import localFont from "next/font/local";
 import {ThemeContextProvider} from "@/context/themeContext";
 import {ProductsFilterConextProvider} from "@/context/productsFilterContext";
 import {CartContextProvider} from "@/context/cartContext";
 import {DropdownContextProvider} from "@/context/dropdownContext";
 import {FormContextProvider} from "@/context/formContext";
-import localFont from "next/font/local";
 import {LogoContextProvider} from "@/context/logoContext";
+import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const RussoOne_Regular = localFont({
     src: "../fonts/RussoOne-Regular.ttf",

@@ -29,7 +29,7 @@ export default function FilterComponent({ data }: Props) {
       <h1>Store</h1>
       <div>
         <div className={styles.filtersWrapper}>
-          <DropdownItemsPerPage totoalProductsCount={data.length} />
+          <DropdownItemsPerPage totalProductsCount={data.length} />
           <DropdownCategories />
           <SearchComponent />
         </div>

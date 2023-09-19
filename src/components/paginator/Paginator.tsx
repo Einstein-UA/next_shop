@@ -2,8 +2,8 @@
 
 import { useEffect, useState, useContext } from "react";
 import styles from "./paginator.module.scss";
-import { ThemeContext } from "../../context/themeContext";
-import { useProductsFilterContext } from "../../context/productsFilterContext";
+import { ThemeContext } from "@/context/themeContext";
+import { useProductsFilterContext } from "@/context/productsFilterContext";
 import Image from "next/image";
 import left from "../../images/store/left.png";
 import right from "../../images/store/right.png";
@@ -123,7 +123,7 @@ export default function Paginator({ totalProductsCount }: Props) {
             ? !themeContext.themeData
               ? `${styles.pageNumWrapper} ${styles.pageNumBorderWhite}`
               : `${styles.pageNumWrapper} ${styles.pageNumBorderBlack}`
-            : `${styles.pageNumWrapper} ${styles.pageNumWrapperDarkTheme}`
+            : styles.pageNumWrapper
         }
         key={index}
       >

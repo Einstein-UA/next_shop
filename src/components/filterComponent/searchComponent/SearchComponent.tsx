@@ -1,12 +1,10 @@
 "use client";
-
+import React from "react";
 import styles from "./searchComponent.module.scss";
-import { useContext, useEffect } from "react";
-import { ThemeContext } from "@/context/themeContext";
-import { useProductsFilterContext } from '../../../context/productsFilterContext'
+import { useEffect } from "react";
+import { useProductsFilterContext } from '@/context/productsFilterContext'
 
 export default function SearchComponent() {
-  const themeContext = useContext(ThemeContext);
   const {searchData, setSearchData, setProductsPerPage, setCategories, setFilterProductData, productsData} = useProductsFilterContext()
 
   useEffect(() => {

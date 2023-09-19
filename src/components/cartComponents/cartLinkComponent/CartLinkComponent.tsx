@@ -7,8 +7,8 @@ import cartWhiteTheme from "../../../images/header/cart.png";
 import cartDarkTheme from "../../../images/header/cartDark.png";
 import Image from "next/image";
 import Link from "next/link";
-import { useCartContext } from '../../../context/cartContext'
-import { useDropdownProvider } from '../../../context/dropdownContext' 
+import { useCartContext } from '@/context/cartContext'
+import { useDropdownProvider } from '@/context/dropdownContext'
 
 interface Props {
   navTo: string,

@@ -1,7 +1,7 @@
 "use client";
-
+import React from "react";
 import styles from "./dropDownCategories.module.scss";
-import { useProductsFilterContext } from '../../../context/productsFilterContext'
+import { useProductsFilterContext } from '@/context/productsFilterContext'
 
 export default function DropdownCategories() {
 
