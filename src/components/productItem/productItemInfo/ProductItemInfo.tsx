@@ -22,7 +22,7 @@ export default function ProductItemInfo({id, product}: Props) {
     const {cartItems, setCartItems, setItemAdded} = useCartContext()
 
     const router = useRouter();
-    const fetcher = (args) => fetch(args).then(res => res.json())
+    const fetcher = (args: string) => fetch(args).then(res => res.json())
     const {data} = useSWR(`https://dummyjson.com/products/${id}`, fetcher);
 
     useEffect(() => {
