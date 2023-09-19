@@ -11,7 +11,7 @@ export default function CartItem() {
     const {cartItems, setCartItems} = useCartContext();
     const themeContext = useContext(ThemeContext)
     const [totalPrice, setTotalPrice] = useState(0)
-    const [itemCounts, setItemCounts] = useState({});
+    const [itemCounts, setItemCounts] = useState<any>({});
 
 
     useEffect(() => {
