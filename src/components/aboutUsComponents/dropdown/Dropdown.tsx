@@ -20,11 +20,11 @@ export default function Dropdown({ title, content, customTitleStyles, customCont
         if(dropdownActive) {
             timeout = setTimeout(() => {
                 setContentVisibility(true)
-            },300)
+            },400)
         } else {
             timeout = setTimeout(() => {
                 setContentVisibility(false)
-            },300)
+            },400)
         }
 
         return () => clearTimeout(timeout)
